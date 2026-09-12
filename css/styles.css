@@ -694,6 +694,50 @@ h3 {
   }
 }
 
+/* Process ----------------------------------------------------------------- */
+
+.steps {
+  display: grid;
+  gap: 2.5rem 2rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  counter-reset: step;
+}
+
+.step {
+  counter-increment: step;
+}
+
+.step::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: var(--ember);
+}
+
+.step__title {
+  margin-top: 1rem;
+}
+
+.step p {
+  margin-top: 0.5rem;
+  color: var(--steel-500);
+}
+
+@media (min-width: 40rem) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* Footer ------------------------------------------------------------------ */
 
 .site-footer {

@@ -42,6 +42,20 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  // Mobile call bar: only once the hero's own buttons have scrolled away
+  const ctaBar = document.querySelector(".cta-bar");
+  const heroActions = document.querySelector(".hero__actions");
+
+  if (ctaBar && heroActions && "IntersectionObserver" in window) {
+    const barObserver = new IntersectionObserver(([entry]) => {
+      ctaBar.classList.toggle("is-visible", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+
+    barObserver.observe(heroActions);
+  } else if (ctaBar) {
+    ctaBar.classList.add("is-visible");
+  }
+
   const year = document.querySelector("[data-year]");
 
   if (year) year.textContent = String(new Date().getFullYear());

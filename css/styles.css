@@ -738,6 +738,37 @@ h3 {
   }
 }
 
+/* Vehicles ---------------------------------------------------------------- */
+
+.vehicles__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.section--vehicles .section__lead {
+  color: var(--steel-300);
+}
+
+.vehicles {
+  border-top: 1px solid var(--steel-700);
+}
+
+.vehicles li {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--steel-700);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  line-height: 1.1;
+}
+
+@media (min-width: 56rem) {
+  .vehicles__grid {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+  }
+}
+
 /* Footer ------------------------------------------------------------------ */
 
 .site-footer {

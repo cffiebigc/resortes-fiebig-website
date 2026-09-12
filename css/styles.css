@@ -560,6 +560,140 @@ h3 {
   background: var(--steel-100);
 }
 
+/* Services + diagram ------------------------------------------------------ */
+
+.diagram {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+.diagram .spring {
+  width: 100%;
+  height: auto;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+.spring--diagram .spring__leaf {
+  stroke: var(--steel-700);
+}
+
+.spring--diagram .spring__leaf--main {
+  stroke: var(--ember);
+}
+
+.spring--diagram .spring__eye {
+  stroke: var(--ember);
+}
+
+.spring--diagram .spring__bolt {
+  fill: var(--steel-900);
+}
+
+.spring--diagram .spring__clip {
+  fill: var(--white);
+  stroke: var(--steel-900);
+}
+
+.spring__callout line {
+  stroke: var(--steel-500);
+  stroke-width: 2;
+}
+
+.spring__callout circle {
+  fill: var(--steel-900);
+}
+
+.spring__callout text {
+  fill: var(--white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.diagram__legend {
+  margin-top: 1.5rem;
+}
+
+.diagram__legend ol {
+  display: grid;
+  gap: 0.75rem 1.5rem;
+  counter-reset: part;
+}
+
+.diagram__legend li {
+  position: relative;
+  padding-left: 2.25rem;
+  font-size: 0.95rem;
+  color: var(--steel-500);
+  counter-increment: part;
+}
+
+.diagram__legend li::before {
+  content: counter(part);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--steel-900);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.diagram__legend b {
+  color: var(--steel-900);
+  font-weight: 600;
+}
+
+@media (min-width: 40rem) {
+  .diagram__legend ol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .diagram__legend ol {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.services {
+  display: grid;
+  gap: 2rem 3rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.service {
+  padding-top: 1rem;
+  border-top: 3px solid var(--steel-900);
+}
+
+.service p {
+  margin-top: 0.5rem;
+  color: var(--steel-500);
+}
+
+@media (min-width: 40rem) {
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .services {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* Footer ------------------------------------------------------------------ */
 
 .site-footer {

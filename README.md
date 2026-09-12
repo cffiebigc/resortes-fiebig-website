@@ -49,7 +49,7 @@ El logo original de Fiebig (versión Osorno, en azul y amarillo) apila tres cosa
 
 ## Osorno
 
-El taller «Fábrica de Resortes Fiebig» de Los Carrera 1893, Osorno (`resortesosorno.cl`), es una empresa aparte y, en la práctica, competencia. El sitio, el JSON-LD y la publicidad se acotan a Puerto Montt y su zona (Puerto Varas, Llanquihue, Calbuco, Chiloé); no mencionar Osorno como sucursal ni incluirlo como área de servicio.
+El taller «Fábrica de Resortes Fiebig» de Los Carrera 1893, Osorno (`resortesosorno.cl`), es una empresa aparte y, en la práctica, competencia. Nunca presentarlo como sucursal. Osorno sí es zona objetivo: interesa que sus clientes vengan a Puerto Montt, así que figura en `areaServed` y en la publicidad, siempre dejando claro que el taller está en Puerto Montt.
 
 ## Datos del negocio usados
 

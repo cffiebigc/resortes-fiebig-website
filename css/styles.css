@@ -179,6 +179,16 @@ h3 {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.btn--outline-dark {
+  border-color: var(--steel-900);
+  color: var(--steel-900);
+}
+
+.btn--outline-dark:hover {
+  background: var(--steel-100);
+  border-color: var(--steel-900);
+}
+
 /* Header ------------------------------------------------------------------ */
 
 .site-header {
@@ -844,6 +854,12 @@ h3 {
   font-size: 1.15rem;
 }
 
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .contact__map iframe {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -857,6 +873,12 @@ h3 {
     grid-template-columns: 5fr 7fr;
     gap: 4rem;
     align-items: start;
+  }
+
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .contact__map iframe {

@@ -45,11 +45,11 @@ Formato: `npx prettier --print-width 120 --write index.html css/*.css js/*.js sc
 | Teléfono    | +56 65 226 3566                                        | RedConecta, Cylex              |
 | Correo      | resortesfiebig@gmail.com                               | RedConecta                     |
 | Fundación   | 1994                                                   | EMIS                           |
+| Horario     | Lunes a viernes, 8:00–12:00 y 14:00–18:00              | Confirmado por el taller       |
 
 ## Pendientes por confirmar con el taller
 
 - **WhatsApp:** los enlaces `wa.me` usan el número fijo. Reemplazar por el celular del taller (buscar `56652263566` en `index.html`).
-- **Horario de atención:** no aparece en ninguna fuente pública; agregar en la sección de contacto cuando se confirme.
 - **Sucursal Osorno:** los directorios listan Los Carrera 1893, Osorno (tel. 64 223 2224, `resortesosorno.cl`) bajo el mismo RUT. No se incluyó hasta confirmar que corresponde al mismo negocio.
 - **Fotos reales del taller y trabajos** reemplazarían o acompañarían al dibujo.
 - **Logo oficial:** hoy la marca es un wordmark tipográfico con un ícono de arco.

@@ -51,6 +51,21 @@
         "email": "resortesfiebig@gmail.com",
         "foundingDate": "1994",
         "priceRange": "$$",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "12:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "14:00",
+            "closes": "18:00"
+          }
+        ],
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Génesis 39, Parque Industrial Recondo",
@@ -124,7 +139,15 @@
                   >Cotizar por WhatsApp</a
                 >
               </div>
-              <p class="hero__where">Génesis 39, Parque Industrial Recondo, Puerto Montt</p>
+              <p class="hero__where">
+                Génesis 39, Parque Industrial Recondo, Puerto Montt.
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+                  target="_blank"
+                  rel="noopener"
+                  >Cómo llegar</a
+                >
+              </p>
             </div>
           </div>
         </div>
@@ -370,6 +393,10 @@
                 </dd>
               </div>
               <div>
+                <dt>Horario</dt>
+                <dd>Lunes a viernes, 8:00 a 12:00 y 14:00 a 18:00</dd>
+              </div>
+              <div>
                 <dt>Teléfono</dt>
                 <dd><a href="tel:+56652263566">+56 65 226 3566</a></dd>
               </div>
@@ -389,7 +416,16 @@
                 <dd><a href="mailto:resortesfiebig@gmail.com">resortesfiebig@gmail.com</a></dd>
               </div>
             </dl>
-            <a class="btn btn--primary" href="tel:+56652263566">Llamar al (65) 226 3566</a>
+            <div class="contact__actions">
+              <a class="btn btn--primary" href="tel:+56652263566">Llamar al (65) 226 3566</a>
+              <a
+                class="btn btn--outline btn--outline-dark"
+                href="https://www.google.com/maps/dir/?api=1&destination=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+                target="_blank"
+                rel="noopener"
+                >Cómo llegar</a
+              >
+            </div>
           </div>
           <div class="contact__map">
             <iframe

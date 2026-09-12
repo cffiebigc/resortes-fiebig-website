@@ -812,6 +812,50 @@ h3 {
   }
 }
 
+/* Contact ----------------------------------------------------------------- */
+
+.contact__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.contact__list {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact__list dt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--steel-500);
+}
+
+.contact__list dd {
+  font-size: 1.15rem;
+}
+
+.contact__map iframe {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--steel-100);
+}
+
+@media (min-width: 56rem) {
+  .contact__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact__map iframe {
+    aspect-ratio: 5 / 4;
+  }
+}
+
 /* Footer ------------------------------------------------------------------ */
 
 .site-footer {

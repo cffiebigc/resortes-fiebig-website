@@ -1,0 +1,15 @@
+{
+  "name": "resortes-fiebig-website",
+  "private": true,
+  "description": "Sitio web de Resortes Fiebig, Puerto Montt",
+  "scripts": {
+    "build:spring": "node scripts/build-spring.js --inject",
+    "build:logo": "node scripts/build-logo.js",
+    "format": "prettier --print-width 120 --write index.html css/*.css js/*.js scripts/*.js",
+    "serve": "python3 -m http.server 8765 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "opentype.js": "^1.3.4",
+    "prettier": "^3.3.3"
+  }
+}

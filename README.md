@@ -47,6 +47,10 @@ El logo original de Fiebig (versión Osorno, en azul y amarillo) apila tres cosa
 - `assets/logo-mark.svg`: solo la marca.
 - Colores y proporciones en `scripts/build-logo.js` (`COLORS`, `GEAR`, `SPRING`, `anvilPath`).
 
+## Osorno
+
+El taller «Fábrica de Resortes Fiebig» de Los Carrera 1893, Osorno (`resortesosorno.cl`), es una empresa aparte y, en la práctica, competencia. El sitio, el JSON-LD y la publicidad se acotan a Puerto Montt y su zona (Puerto Varas, Llanquihue, Calbuco, Chiloé); no mencionar Osorno como sucursal ni incluirlo como área de servicio.
+
 ## Datos del negocio usados
 
 | Dato        | Valor                                                  | Fuente                         |
@@ -61,7 +65,6 @@ El logo original de Fiebig (versión Osorno, en azul y amarillo) apila tres cosa
 ## Pendientes por confirmar con el taller
 
 - **WhatsApp:** los enlaces `wa.me` usan el número fijo. Reemplazar por el celular del taller (buscar `56652263566` en `index.html`).
-- **Sucursal Osorno:** los directorios listan Los Carrera 1893, Osorno (tel. 64 223 2224, `resortesosorno.cl`) bajo el mismo RUT. No se incluyó hasta confirmar que corresponde al mismo negocio.
 - **Fotos reales del taller y trabajos** reemplazarían o acompañarían al dibujo.
 - **Marca:** la versión modernizada usa la paleta del sitio (acero + brasa). Si se quiere mantener el azul y amarillo históricos, basta cambiar `COLORS` en `scripts/build-logo.js` y correr `npm run build:logo`.
 - Textos de servicios y «por qué Fiebig» escritos a partir del rubro; revisar que reflejen exactamente lo que ofrece el taller (p. ej. resortes espirales, garantía, plazos).

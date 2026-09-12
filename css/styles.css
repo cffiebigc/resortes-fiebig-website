@@ -769,6 +769,49 @@ h3 {
   }
 }
 
+/* About ------------------------------------------------------------------- */
+
+.about__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.about__story p {
+  margin-top: 1.25rem;
+  max-width: 58ch;
+}
+
+.about__story p:first-of-type {
+  margin-top: 1.75rem;
+  font-size: 1.15rem;
+}
+
+.reasons {
+  border-top: 3px solid var(--steel-900);
+}
+
+.reason {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--steel-300);
+}
+
+.reason p {
+  margin-top: 0.4rem;
+  color: var(--steel-500);
+}
+
+@media (min-width: 56rem) {
+  .about__grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .reasons {
+    margin-top: 0.75rem;
+  }
+}
+
 /* Footer ------------------------------------------------------------------ */
 
 .site-footer {

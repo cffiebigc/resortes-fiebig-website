@@ -418,13 +418,15 @@ h3 {
 }
 
 .hero__art {
-  margin-top: clamp(2rem, 5vw, 4rem);
+  margin-top: clamp(1.5rem, 4vw, 3rem);
 }
 
 .hero__art .spring {
   width: 100%;
+  max-width: 56rem;
   height: auto;
-  margin-bottom: -0.5rem;
+  margin-inline: auto;
+  margin-bottom: -0.25rem;
 }
 
 @media (max-width: 40rem) {

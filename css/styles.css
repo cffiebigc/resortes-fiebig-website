@@ -1,0 +1,586 @@
+/* Resortes Fiebig — landing
+   Tokens, base, layout, components. Mobile first. */
+
+:root {
+  --steel-900: #1e2a35;
+  --steel-700: #33414d;
+  --steel-500: #55636f;
+  --steel-300: #b9c3cc;
+  --steel-200: #d9dfe4;
+  --steel-100: #eef1f3;
+  --white: #ffffff;
+  --ember: #e8651a;
+  --ember-deep: #c4500f;
+
+  --font-display: "Big Shoulders Display", "Archivo Narrow", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --container: 72rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 7rem);
+  --header-h: 4rem;
+
+  --radius: 4px;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Base ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--steel-100);
+  color: var(--steel-900);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+img,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ember);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ember);
+  color: var(--steel-900);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+.container {
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+/* Type scale -------------------------------------------------------------- */
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  max-width: 18ch;
+}
+
+.section__lead {
+  margin-top: 1rem;
+  max-width: 50ch;
+  font-size: 1.15rem;
+  color: var(--steel-500);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Buttons ----------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--steel-900);
+}
+
+.btn--primary:hover {
+  background: var(--ember-deep);
+  border-color: var(--ember-deep);
+}
+
+.btn--outline {
+  border-color: var(--steel-300);
+  color: var(--white);
+}
+
+.btn--outline:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--steel-900);
+  color: var(--white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-h);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.brand__mark {
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.brand__mark circle {
+  fill: var(--ember);
+  stroke: none;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+  transition:
+    transform 0.2s var(--ease-out),
+    opacity 0.2s ease;
+}
+
+.nav-toggle__bar {
+  position: relative;
+}
+
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bar::before {
+  top: -7px;
+}
+
+.nav-toggle__bar::after {
+  top: 7px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.site-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 0.5rem var(--gutter) 1.25rem;
+  background: var(--steel-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-nav.is-open {
+  display: block;
+}
+
+.site-nav__list a {
+  display: block;
+  padding: 0.7rem 0;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--steel-300);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-nav__list a:hover,
+.site-nav__list a.is-active {
+  color: var(--white);
+}
+
+.site-nav__phone {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--ember);
+}
+
+@media (min-width: 56rem) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: flex;
+    position: static;
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .site-nav__list {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .site-nav__list a {
+    padding: 0.35rem 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav__list a.is-active {
+    border-bottom-color: var(--ember);
+  }
+
+  .site-nav__phone {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+}
+
+/* Hero -------------------------------------------------------------------- */
+
+.hero {
+  background: var(--steel-900);
+  color: var(--white);
+  padding-top: clamp(3.5rem, 8vw, 6.5rem);
+  overflow: hidden;
+}
+
+.hero__copy {
+  display: grid;
+  gap: 1.5rem 3rem;
+  align-items: end;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3.4rem, 8vw, 6.25rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+}
+
+.hero__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero__lead {
+  max-width: 40ch;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  color: var(--steel-300);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.hero__where {
+  font-size: 0.95rem;
+  color: var(--steel-300);
+}
+
+@media (min-width: 56rem) {
+  .hero__copy {
+    grid-template-columns: 7fr 5fr;
+  }
+
+  .hero__side {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.hero__art {
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.hero__art .spring {
+  width: 100%;
+  height: auto;
+  margin-bottom: -0.5rem;
+}
+
+/* Spring illustration ----------------------------------------------------- */
+
+.spring {
+  overflow: visible;
+}
+
+.spring__leaf {
+  fill: none;
+  stroke: var(--steel-300);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.spring__leaf--main {
+  stroke: var(--white);
+}
+
+.spring__eye {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 12;
+}
+
+.spring__bolt {
+  fill: var(--steel-300);
+}
+
+.spring__clip {
+  fill: var(--steel-900);
+  stroke: var(--steel-300);
+  stroke-width: 4;
+}
+
+/* Page-load sequence: leaves stack in, glow like they come from the forge,
+   then cool to steel. main.js adds the classes and drives the flex. */
+
+.js .spring[data-animate]:not(.is-in) .spring__leaf,
+.js .spring[data-animate]:not(.is-in) .spring__eye,
+.js .spring[data-animate]:not(.is-in) .spring__bolt,
+.js .spring[data-animate]:not(.is-in) .spring__clip {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.spring.is-hot .spring__leaf {
+  stroke: var(--ember);
+}
+
+.spring.is-in .spring__leaf {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s ease var(--d),
+    transform 0.7s var(--ease-out) var(--d),
+    stroke 1.8s ease var(--d);
+}
+
+.spring.is-in .spring__eye,
+.spring.is-in .spring__bolt,
+.spring.is-in .spring__clip {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s ease 0.7s,
+    transform 0.7s var(--ease-out) 0.7s;
+}
+
+.spring__leaf[data-leaf="0"] {
+  --d: 0s;
+}
+.spring__leaf[data-leaf="1"] {
+  --d: 0.09s;
+}
+.spring__leaf[data-leaf="2"] {
+  --d: 0.18s;
+}
+.spring__leaf[data-leaf="3"] {
+  --d: 0.27s;
+}
+.spring__leaf[data-leaf="4"] {
+  --d: 0.36s;
+}
+.spring__leaf[data-leaf="5"] {
+  --d: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .spring[data-animate]:not(.is-in) .spring__leaf,
+  .js .spring[data-animate]:not(.is-in) .spring__eye,
+  .js .spring[data-animate]:not(.is-in) .spring__bolt,
+  .js .spring[data-animate]:not(.is-in) .spring__clip {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .spring.is-hot .spring__leaf {
+    stroke: var(--steel-300);
+  }
+
+  .spring.is-hot .spring__leaf--main {
+    stroke: var(--white);
+  }
+}
+
+/* Sections ---------------------------------------------------------------- */
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--services {
+  background: var(--steel-100);
+}
+
+.section--process,
+.section--contact {
+  background: var(--white);
+}
+
+.section--vehicles {
+  background: var(--steel-900);
+  color: var(--white);
+}
+
+.section--about {
+  background: var(--steel-100);
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.site-footer {
+  background: var(--steel-900);
+  color: var(--steel-300);
+  padding-block: 2.5rem;
+  font-size: 0.9rem;
+}
+
+.site-footer__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.site-footer__legal {
+  margin-top: 0.75rem;
+}
+
+.site-footer__copy {
+  margin-top: 0.25rem;
+}

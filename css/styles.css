@@ -215,18 +215,33 @@ h3 {
   text-decoration: none;
 }
 
-.brand__mark {
-  width: 2rem;
-  height: 2rem;
+.logo {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logo__gear {
+  fill: var(--steel-300);
+}
+
+.logo__anvil {
+  fill: var(--white);
+}
+
+.logo__leaf,
+.logo__eye {
   fill: none;
   stroke: var(--ember);
-  stroke-width: 3.5;
   stroke-linecap: round;
 }
 
-.brand__mark circle {
-  fill: var(--ember);
-  stroke: none;
+.logo__leaf {
+  stroke-width: 5.5;
+}
+
+.logo__eye {
+  stroke-width: 4.5;
 }
 
 .brand__name {
@@ -935,15 +950,31 @@ body {
 }
 
 .site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-footer .logo {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.site-footer__name {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.6rem;
+  line-height: 1;
   text-transform: uppercase;
   color: var(--white);
 }
 
+.site-footer__tagline {
+  margin-top: 0.25rem;
+}
+
 .site-footer__legal {
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .site-footer__copy {

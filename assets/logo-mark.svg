@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-<style>.logo__gear{fill:#b9c3cc}.logo__anvil{fill:#ffffff}.logo__leaf{stroke:#e8651a;stroke-width:5.5}.logo__eye{stroke:#e8651a;stroke-width:4.5}</style>
-<rect width="120" height="120" rx="20" fill="#1e2a35"/>
-<g transform="translate(9 9) scale(0.85)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Resortes Fiebig">
+<style>.logo__gear{fill:#33414d}.logo__anvil{fill:#1e2a35}.logo__leaf{stroke:#e8651a;stroke-width:5.5}.logo__eye{stroke:#e8651a;stroke-width:4.5}</style>
 <path class="logo__gear" d="M16 58 L16.09 55.24 L10.22 53.29 L11.2 47.09 L17.38 47.06 L19.09 41.8 L14.11 38.14 L16.96 32.55 L22.85 34.42 L26.1 29.95 L22.49 24.93 L26.93 20.49 L31.95 24.1 L36.42 20.85 L34.55 14.96 L40.14 12.11 L43.8 17.09 L49.06 15.38 L49.09 9.2 L55.29 8.22 L57.24 14.09 L62.76 14.09 L64.71 8.22 L70.91 9.2 L70.94 15.38 L76.2 17.09 L79.86 12.11 L85.45 14.96 L83.58 20.85 L88.05 24.1 L93.07 20.49 L97.51 24.93 L93.9 29.95 L97.15 34.42 L103.04 32.55 L105.89 38.14 L100.91 41.8 L102.62 47.06 L108.8 47.09 L109.78 53.29 L103.91 55.24 L104 58 L93 58 A33 33 0 0 0 27 58 Z"/>
 <path class="logo__anvil" d="M96 97 H40 L18 101 L40 106 H46 V111 H32 V120 H100 V111 H88 V106 H96 Z"/>
 <g fill="none" stroke-linecap="round"><path class="logo__leaf" d="M17 58 Q60 98 103 58"/><path class="logo__leaf" d="M31 77.4 Q60 95.6 89 77.4"/><path class="logo__leaf" d="M45 92.57 Q60 97.43 75 92.57"/><circle class="logo__eye" cx="11" cy="58" r="5"/><circle class="logo__eye" cx="109" cy="58" r="5"/></g>
-</g>
 </svg>

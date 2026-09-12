@@ -47,20 +47,19 @@ const inject = process.argv.includes("--inject");
 if (inject) {
   // handled below
 } else if (variant === "hero") {
-  console.log(`<svg class="spring" viewBox="0 0 ${S.WIDTH} ${S.HEIGHT}" preserveAspectRatio="xMidYMax meet" data-animate="hero" aria-hidden="true" focusable="false">
+  console.log(`<svg class="spring" viewBox="0 0 ${S.WIDTH} 190" preserveAspectRatio="xMidYMax meet" data-animate="hero" aria-hidden="true" focusable="false">
 ${body}
 </svg>`);
 } else {
-  // Callouts: anchor (ax, ay) on the part, bubble (bx, by) in clear space.
-  // Eyes up, main leaf on top, shorter leaves stacked below it.
+  // Callouts: [number, label anchor x/y on the part, bubble x/y]
   const g3 = S.leafGeometry(3, sag);
   const clip = S.clipRect(S.CLIP_X[1], sag);
   const callouts = [
-    { n: 1, ax: 300, ay: S.leafY(0, sag, 300) - 7, bx: 300, by: 58 },
-    { n: 2, ax: S.MAIN_X0 - 22, ay: S.EYE_Y - S.EYE_R - 6, bx: S.MAIN_X0 - 22, by: -22 },
-    { n: 3, ax: g3.x1 + 4, ay: g3.endY, bx: 690, by: 250 },
-    { n: 4, ax: S.CENTER, ay: S.boltHeadRect(sag).y - 2, bx: S.CENTER, by: 78 },
-    { n: 5, ax: clip.x + clip.width + 2, ay: clip.y + clip.height / 2, bx: 800, by: 200 },
+    { n: 1, ax: 300, ay: S.leafY(0, sag, 300) - 7, bx: 300, by: -12 },
+    { n: 2, ax: S.MAIN_X0 - 22, ay: S.EYE_Y + S.EYE_R + 6, bx: S.MAIN_X0 - 22, by: 215 },
+    { n: 3, ax: g3.x1 + 4, ay: g3.endY, bx: 690, by: 200 },
+    { n: 4, ax: S.CENTER, ay: S.boltHeadRect(sag).y - 2, bx: S.CENTER, by: -12 },
+    { n: 5, ax: clip.x + clip.width + 2, ay: clip.y + clip.height / 2, bx: 800, by: 185 },
   ];
   const marks = callouts
     .map(
@@ -72,7 +71,7 @@ ${body}
     )
     .join("\n");
 
-  console.log(`<svg class="spring spring--diagram" viewBox="0 -45 ${S.WIDTH} 315" role="img" aria-labelledby="diagram-title">
+  console.log(`<svg class="spring spring--diagram" viewBox="0 -40 ${S.WIDTH} 280" role="img" aria-labelledby="diagram-title">
   <title id="diagram-title">Partes de un paquete de resortes: hoja madre, ojos, hojas graduadas, perno centro y abrazaderas</title>
 ${body}
 ${marks}

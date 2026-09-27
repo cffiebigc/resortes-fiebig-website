@@ -60,12 +60,16 @@
 
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Hero spring: leaves stack in straight, bend into shape, then one flex under load.
+  // Hero spring: leaves stack in nearly straight, settle into shape, then one gentle flex under load.
 
   const spring = document.querySelector(".spring[data-animate='hero']");
   const S = window.SpringGeometry;
 
   if (!spring || !S) return;
+
+  // Kept small on purpose: the pack should settle, not bounce.
+  const START_SAG = S.REST_SAG * 0.7;
+  const FLEX_DEPTH = 16;
 
   const leaves = Array.from(spring.querySelectorAll(".spring__leaf"));
   const clips = Array.from(spring.querySelectorAll(".spring__clip"));
@@ -110,9 +114,9 @@
     requestAnimationFrame(frame);
   }
 
-  // Straight leaves curve into their rest arc, like in the press.
+  // The leaves finish curving into their rest arc, like in the press.
   function bend(duration, done) {
-    animate(duration, (t) => (S.REST_SAG * (1 - Math.cos(Math.PI * t))) / 2, done);
+    animate(duration, (t) => START_SAG + ((S.REST_SAG - START_SAG) * (1 - Math.cos(Math.PI * t))) / 2, done);
   }
 
   function flex(depth, duration) {
@@ -132,15 +136,15 @@
     return;
   }
 
-  render(0);
+  render(START_SAG);
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => spring.classList.add("is-in"));
   });
 
   window.setTimeout(() => {
-    bend(1000, () => window.setTimeout(() => flex(46, 1200), 600));
+    bend(1000, () => window.setTimeout(() => flex(FLEX_DEPTH, 1200), 600));
   }, 1200);
 
-  spring.addEventListener("click", () => flex(46, 1200));
+  spring.addEventListener("click", () => flex(FLEX_DEPTH, 1200));
 })();

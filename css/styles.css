@@ -9,8 +9,8 @@
   --steel-200: #d9dfe4;
   --steel-100: #eef1f3;
   --white: #ffffff;
-  --ember: #e8651a;
-  --ember-deep: #c4500f;
+  --royal: #4169e1;
+  --royal-deep: #204ac8;
 
   --font-display: "Big Shoulders Display", "Archivo Narrow", "Arial Narrow", Impact, sans-serif;
   --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -80,7 +80,7 @@ iframe {
 }
 
 :focus-visible {
-  outline: 3px solid var(--ember);
+  outline: 3px solid var(--royal);
   outline-offset: 3px;
 }
 
@@ -99,8 +99,8 @@ iframe {
   left: 1rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--ember);
-  color: var(--steel-900);
+  background: var(--royal);
+  color: var(--white);
   font-weight: 600;
 }
 
@@ -159,14 +159,14 @@ h3 {
 }
 
 .btn--primary {
-  background: var(--ember);
-  border-color: var(--ember);
-  color: var(--steel-900);
+  background: var(--royal);
+  border-color: var(--royal);
+  color: var(--white);
 }
 
 .btn--primary:hover {
-  background: var(--ember-deep);
-  border-color: var(--ember-deep);
+  background: var(--royal-deep);
+  border-color: var(--royal-deep);
 }
 
 .btn--outline {
@@ -232,7 +232,7 @@ h3 {
 .logo__leaf,
 .logo__eye {
   fill: none;
-  stroke: var(--ember);
+  stroke: var(--royal);
   stroke-linecap: round;
 }
 
@@ -345,7 +345,7 @@ h3 {
   font-weight: 800;
   font-size: 1.5rem;
   text-decoration: none;
-  color: var(--ember);
+  color: var(--royal);
 }
 
 @media (min-width: 56rem) {
@@ -375,7 +375,7 @@ h3 {
   }
 
   .site-nav__list a.is-active {
-    border-bottom-color: var(--ember);
+    border-bottom-color: var(--royal);
   }
 
   .site-nav__phone {
@@ -601,11 +601,11 @@ h3 {
 }
 
 .spring--diagram .spring__leaf--main {
-  stroke: var(--ember);
+  stroke: var(--royal);
 }
 
 .spring--diagram .spring__eye {
-  stroke: var(--ember);
+  stroke: var(--royal);
 }
 
 .spring--diagram .spring__bolt {
@@ -734,7 +734,7 @@ h3 {
   font-weight: 900;
   font-size: 4.5rem;
   line-height: 0.8;
-  color: var(--ember);
+  color: var(--royal);
 }
 
 .step__title {

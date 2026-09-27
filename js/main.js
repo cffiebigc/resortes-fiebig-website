@@ -60,7 +60,7 @@
 
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Hero spring: leaves stack in nearly straight, settle into shape, then one gentle flex under load.
+  // Hero spring: leaves stack in nearly straight and settle into shape in one bend. A click flexes it.
 
   const spring = document.querySelector(".spring[data-animate='hero']");
   const S = window.SpringGeometry;
@@ -142,9 +142,8 @@
     requestAnimationFrame(() => spring.classList.add("is-in"));
   });
 
-  window.setTimeout(() => {
-    bend(1000, () => window.setTimeout(() => flex(FLEX_DEPTH, 1200), 600));
-  }, 1200);
+  // Starts while the last leaves are still settling in, so it reads as one move.
+  window.setTimeout(() => bend(900), 800);
 
   spring.addEventListener("click", () => flex(FLEX_DEPTH, 1200));
 })();

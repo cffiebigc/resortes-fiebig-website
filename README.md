@@ -37,7 +37,7 @@ Las fuentes que vectoriza `build:logo` se bajan de Google Fonts a `scripts/.font
 
 - **Color:** acero (`#1e2a35`, `#55636f`, `#b9c3cc`, `#eef1f3`) y un solo acento azul rey (`#4169e1`) para llamadas a la acción y la hoja madre.
 - **Tipografía:** Big Shoulders Display (titulares, marca) y Archivo (texto). Ambas desde Google Fonts.
-- **Pieza central:** el paquete de resortes dibujado en SVG a partir de una parábola. En el hero, al cargar, las hojas entran casi rectas, terminan de curvarse y flexionan levemente una vez bajo carga (respeta `prefers-reduced-motion`). En servicios, el mismo dibujo sirve de diagrama de partes.
+- **Pieza central:** el paquete de resortes dibujado en SVG a partir de una parábola. En el hero, al cargar, las hojas entran casi rectas y terminan de curvarse en un solo movimiento; al hacer clic, flexiona bajo carga (respeta `prefers-reduced-motion`). En servicios, el mismo dibujo sirve de diagrama de partes.
 
 ## Marca
 

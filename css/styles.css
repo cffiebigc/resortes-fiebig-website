@@ -929,7 +929,7 @@ h3 {
   right: 0;
   z-index: 40;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr auto;
   gap: 0.5rem;
   padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
   background: var(--steel-900);
@@ -943,6 +943,20 @@ h3 {
 
 .cta-bar .btn {
   min-height: 2.9rem;
+  padding-inline: 0.5rem;
+  gap: 0.4rem;
+}
+
+.cta-bar .btn--icon {
+  width: 2.9rem;
+  padding-inline: 0;
+}
+
+/* Celulares muy angostos: sin ícono en Llamar y WhatsApp para que quepan los tres */
+@media (max-width: 21.25rem) {
+  .cta-bar .btn:not(.btn--icon) .icon {
+    display: none;
+  }
 }
 
 body {

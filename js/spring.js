@@ -1,25 +1,36 @@
 // Parametric leaf-spring pack. Shared by the browser (hero animation) and by
 // scripts/build-spring.js (static markup baked into index.html).
+//
+// Drawn as mounted on a truck and as in the original Fiebig logo: eyes up at
+// the ends, the main leaf on top hanging down to the centre, and the shorter
+// leaves stacked below it towards the axle seat.
 (function (root) {
   const WIDTH = 900;
+  const HEIGHT = 270;
   const CENTER = WIDTH / 2;
-  const EYE_Y = 150; // y of the main leaf ends (eyes)
+  const EYE_Y = 40; // y of the main leaf ends (eyes) at rest, top of the pack
   const MAIN_X0 = 70; // main leaf start x
   const LEAVES = 6;
   const STEP_X = 66; // each leaf is shorter by this on each side
   const STEP_Y = 17; // vertical stacking distance
   const THICKNESS = 14;
-  const REST_SAG = 120; // vertex-to-eye height at rest
+  const REST_SAG = 120; // eye-to-vertex drop at rest
   const CLIP_X = [200, WIDTH - 200];
   const EYE_R = 17;
+
+  // The pack sits on the axle seat: under load the centre stays put and the
+  // eyes come down, flattening the leaves.
+  function eyeY(sag) {
+    return EYE_Y + REST_SAG - sag;
+  }
 
   function leafGeometry(i, sag) {
     const mainHalf = CENTER - MAIN_X0;
     const half = mainHalf - STEP_X * i;
     const k = sag / (mainHalf * mainHalf);
-    const vertexY = EYE_Y - sag + STEP_Y * i;
-    const endY = vertexY + k * half * half;
-    const ctrlY = vertexY - k * half * half;
+    const vertexY = EYE_Y + REST_SAG + STEP_Y * i;
+    const endY = vertexY - k * half * half;
+    const ctrlY = vertexY + k * half * half;
 
     return { x0: CENTER - half, x1: CENTER + half, endY, ctrlY, vertexY, k };
   }
@@ -27,7 +38,7 @@
   function leafY(i, sag, x) {
     const g = leafGeometry(i, sag);
 
-    return g.vertexY + g.k * (x - CENTER) * (x - CENTER);
+    return g.vertexY - g.k * (x - CENTER) * (x - CENTER);
   }
 
   function leafPath(i, sag) {
@@ -52,7 +63,8 @@
   function clipRect(x, sag) {
     const covered = leavesCovering(x);
     const top = leafY(covered[0], sag, x) - THICKNESS / 2 - 4;
-    const bottom = leafY(covered[covered.length - 1], sag, x) + THICKNESS / 2 + 4;
+    const bottom =
+      leafY(covered[covered.length - 1], sag, x) + THICKNESS / 2 + 4;
 
     return { x: x - 9, y: top, width: 18, height: bottom - top };
   }
@@ -64,12 +76,14 @@
     return { x: CENTER - 4, y: top, width: 8, height: bottom - top };
   }
 
+  // Bolt head sits on the main leaf, at the top of the stack.
   function boltHeadRect(sag) {
     const top = leafGeometry(0, sag).vertexY - THICKNESS / 2 - 9;
 
     return { x: CENTER - 11, y: top, width: 22, height: 9 };
   }
 
+  // Nut closes the stack under the shortest leaf.
   function boltNutRect(sag) {
     const bottom = leafGeometry(LEAVES - 1, sag).vertexY + THICKNESS / 2 + 9;
 
@@ -78,6 +92,7 @@
 
   root.SpringGeometry = {
     WIDTH,
+    HEIGHT,
     CENTER,
     EYE_Y,
     MAIN_X0,
@@ -86,6 +101,7 @@
     REST_SAG,
     CLIP_X,
     EYE_R,
+    eyeY,
     leafGeometry,
     leafY,
     leafPath,

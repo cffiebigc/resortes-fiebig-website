@@ -58,13 +58,13 @@ El taller «Fábrica de Resortes Fiebig» de Los Carrera 1893, Osorno (`resortes
 | Razón social| Resortes Fiebig Limitada, RUT 78.486.010-8             | Mercantil, RedConecta          |
 | Dirección   | Génesis 39, Parque Industrial Recondo, Puerto Montt    | Mercantil, RedConecta, Yelp    |
 | Teléfono    | +56 65 226 3566                                        | RedConecta, Cylex              |
-| Correo      | resortesfiebig@gmail.com                               | RedConecta                     |
+| WhatsApp    | +56 9 9519 0145 (celular, WhatsApp Business)           | Confirmado por el taller       |
+| Correo      | contacto@resortesfiebig.cl                             | Confirmado por el taller       |
 | Fundación   | 1994                                                   | EMIS                           |
 | Horario     | Lunes a viernes, 8:00–12:00 y 14:00–18:00              | Confirmado por el taller       |
 
 ## Pendientes por confirmar con el taller
 
-- **WhatsApp:** los enlaces `wa.me` usan el número fijo. Reemplazar por el celular del taller (buscar `56652263566` en `index.html`).
 - **Fotos reales del taller y trabajos** reemplazarían o acompañarían al dibujo.
 - **Marca:** la versión modernizada usa la paleta del sitio (acero + azul rey). Si se quiere mantener el azul y amarillo históricos, basta cambiar `COLORS` en `scripts/build-logo.js` y correr `npm run build:logo`.
 - Textos de servicios y «por qué Fiebig» escritos a partir del rubro; revisar que reflejen exactamente lo que ofrece el taller (p. ej. resortes espirales, garantía, plazos).

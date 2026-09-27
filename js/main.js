@@ -69,6 +69,7 @@
 
   const leaves = Array.from(spring.querySelectorAll(".spring__leaf"));
   const clips = Array.from(spring.querySelectorAll(".spring__clip"));
+  const eyes = Array.from(spring.querySelectorAll(".spring__eye"));
   const boltShaft = spring.querySelector("[data-bolt='shaft']");
   const boltHead = spring.querySelector("[data-bolt='head']");
   const boltNut = spring.querySelector("[data-bolt='nut']");
@@ -80,6 +81,7 @@
   function render(sag) {
     leaves.forEach((leaf) => leaf.setAttribute("d", S.leafPath(Number(leaf.dataset.leaf), sag)));
     clips.forEach((clip) => setRect(clip, S.clipRect(Number(clip.dataset.clip), sag)));
+    eyes.forEach((eye) => eye.setAttribute("cy", S.eyeY(sag).toFixed(1)));
     setRect(boltShaft, S.boltRect(sag));
     setRect(boltHead, S.boltHeadRect(sag));
     setRect(boltNut, S.boltNutRect(sag));

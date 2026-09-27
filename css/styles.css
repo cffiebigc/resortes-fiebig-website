@@ -390,6 +390,7 @@ h3 {
   background: var(--steel-900);
   color: var(--white);
   padding-top: clamp(3.5rem, 8vw, 6.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
   overflow: hidden;
 }
 
@@ -451,7 +452,6 @@ h3 {
   max-width: 56rem;
   height: auto;
   margin-inline: auto;
-  margin-bottom: -0.25rem;
 }
 
 @media (max-width: 40rem) {
@@ -493,8 +493,8 @@ h3 {
   stroke-width: 4;
 }
 
-/* Page-load sequence: leaves stack in straight, then main.js bends them into
-   shape and drives the flex. */
+/* Page-load sequence: leaves stack in nearly straight, then main.js finishes
+   bending them into shape and drives the flex. */
 
 .js .spring[data-animate]:not(.is-in) .spring__leaf,
 .js .spring[data-animate]:not(.is-in) .spring__eye,

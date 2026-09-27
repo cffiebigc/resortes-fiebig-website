@@ -206,12 +206,6 @@ h3 {
   fill: currentColor;
 }
 
-.link-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
 /* Header ------------------------------------------------------------------ */
 
 .site-header {
@@ -362,13 +356,20 @@ h3 {
 }
 
 .site-nav__phone {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-top: 1rem;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.5rem;
   text-decoration: none;
   color: var(--royal);
+}
+
+.site-nav__phone .icon {
+  width: 0.9em;
+  height: 0.9em;
 }
 
 @media (min-width: 56rem) {
@@ -876,7 +877,15 @@ h3 {
 }
 
 .contact__list dd {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
   font-size: 1.15rem;
+}
+
+/* Centra el ícono en la primera línea: (line-height 1.6 - ícono 1.25) / 2 */
+.contact__list .icon {
+  margin-top: 0.175em;
 }
 
 .contact__actions {

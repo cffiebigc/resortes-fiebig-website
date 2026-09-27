@@ -60,7 +60,7 @@
 
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Hero spring: stack in, cool from ember to steel, then one flex under load.
+  // Hero spring: leaves stack in straight, bend into shape, then one flex under load.
 
   const spring = document.querySelector(".spring[data-animate='hero']");
   const S = window.SpringGeometry;
@@ -87,31 +87,44 @@
     setRect(boltNut, S.boltNutRect(sag));
   }
 
-  let flexing = false;
+  // Until the entry sequence has bent the pack into shape, clicks do nothing.
+  let animating = true;
 
-  function flex(depth, duration) {
-    if (flexing) return;
-
-    flexing = true;
+  function animate(duration, sagAt, done) {
+    animating = true;
     const start = performance.now();
 
     function frame(now) {
       const t = Math.min(1, (now - start) / duration);
-      // compress fast, release with a small rebound
-      const load = t < 0.35 ? Math.sin((t / 0.35) * Math.PI * 0.5) : Math.cos(((t - 0.35) / 0.65) * Math.PI * 0.5);
-      const rebound = t > 0.35 ? Math.sin(((t - 0.35) / 0.65) * Math.PI) * 0.12 : 0;
 
-      render(S.REST_SAG - depth * load + depth * rebound);
+      render(sagAt(t));
 
       if (t < 1) {
         requestAnimationFrame(frame);
       } else {
-        render(S.REST_SAG);
-        flexing = false;
+        animating = false;
+        if (done) done();
       }
     }
 
     requestAnimationFrame(frame);
+  }
+
+  // Straight leaves curve into their rest arc, like in the press.
+  function bend(duration, done) {
+    animate(duration, (t) => (S.REST_SAG * (1 - Math.cos(Math.PI * t))) / 2, done);
+  }
+
+  function flex(depth, duration) {
+    if (animating) return;
+
+    animate(duration, (t) => {
+      // compress fast, release with a small rebound
+      const load = t < 0.35 ? Math.sin((t / 0.35) * Math.PI * 0.5) : Math.cos(((t - 0.35) / 0.65) * Math.PI * 0.5);
+      const rebound = t > 0.35 ? Math.sin(((t - 0.35) / 0.65) * Math.PI) * 0.12 : 0;
+
+      return S.REST_SAG - depth * load + depth * rebound;
+    });
   }
 
   if (reducedMotion) {
@@ -119,14 +132,15 @@
     return;
   }
 
-  spring.classList.add("is-hot");
+  render(0);
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => spring.classList.add("is-in"));
   });
 
-  window.setTimeout(() => spring.classList.remove("is-hot"), 1200);
-  window.setTimeout(() => flex(46, 1200), 2500);
+  window.setTimeout(() => {
+    bend(1000, () => window.setTimeout(() => flex(46, 1200), 600));
+  }, 1200);
 
   spring.addEventListener("click", () => flex(46, 1200));
 })();

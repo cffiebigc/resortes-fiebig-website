@@ -493,8 +493,8 @@ h3 {
   stroke-width: 4;
 }
 
-/* Page-load sequence: leaves stack in, glow like they come from the forge,
-   then cool to steel. main.js adds the classes and drives the flex. */
+/* Page-load sequence: leaves stack in straight, then main.js bends them into
+   shape and drives the flex. */
 
 .js .spring[data-animate]:not(.is-in) .spring__leaf,
 .js .spring[data-animate]:not(.is-in) .spring__eye,
@@ -504,17 +504,12 @@ h3 {
   transform: translateY(16px);
 }
 
-.spring.is-hot .spring__leaf {
-  stroke: var(--ember);
-}
-
 .spring.is-in .spring__leaf {
   opacity: 1;
   transform: none;
   transition:
     opacity 0.5s ease var(--d),
-    transform 0.7s var(--ease-out) var(--d),
-    stroke 1.8s ease var(--d);
+    transform 0.7s var(--ease-out) var(--d);
 }
 
 .spring.is-in .spring__eye,
@@ -558,14 +553,6 @@ h3 {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .spring.is-hot .spring__leaf {
-    stroke: var(--steel-300);
-  }
-
-  .spring.is-hot .spring__leaf--main {
-    stroke: var(--white);
   }
 }
 

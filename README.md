@@ -59,7 +59,7 @@ El taller «Fábrica de Resortes Fiebig» de Los Carrera 1893, Osorno (`resortes
 | Dirección   | Génesis 39, Parque Industrial Recondo, Puerto Montt    | Mercantil, RedConecta, Yelp    |
 | Teléfono    | +56 65 226 3566                                        | RedConecta, Cylex              |
 | WhatsApp    | +56 9 9519 0145 (celular, WhatsApp Business)           | Confirmado por el taller       |
-| Correo      | resortesfiebig@gmail.com                               | RedConecta                     |
+| Correo      | contacto@resortesfiebig.cl                             | Confirmado por el taller       |
 | Fundación   | 1994                                                   | EMIS                           |
 | Horario     | Lunes a viernes, 8:00–12:00 y 14:00–18:00              | Confirmado por el taller       |
 

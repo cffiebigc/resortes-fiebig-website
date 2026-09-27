@@ -36,14 +36,14 @@ const COLORS = {
   light: {
     gear: "#33414d",
     anvil: "#1e2a35",
-    spring: "#e8651a",
+    spring: "#4169e1",
     text: "#1e2a35",
     subtext: "#55636f",
   },
   dark: {
     gear: "#b9c3cc",
     anvil: "#ffffff",
-    spring: "#e8651a",
+    spring: "#4169e1",
     text: "#ffffff",
     subtext: "#b9c3cc",
   },

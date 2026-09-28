@@ -5,7 +5,7 @@
   "scripts": {
     "build:spring": "node scripts/build-spring.js --inject",
     "build:logo": "node scripts/build-logo.js",
-    "format": "prettier --print-width 120 --write src/index.html src/404.html src/css/*.css src/js/*.js scripts/*.js test/*.js eleventy.config.cjs",
+    "format": "prettier --print-width 120 --write src/css/*.css src/js/*.js src/_data/*.js scripts/*.js test/*.js eleventy.config.cjs",
     "test": "eleventy --quiet && node --test test/*.test.js",
     "build": "eleventy",
     "start": "eleventy --serve --port 8765"

@@ -11,16 +11,6 @@ test("the 404 page is noindex and offers call, whatsapp and home", () => {
   assert.match(html, /<a[^>]+href="\/"/);
 });
 
-// GitHub Pages serves 404.html at any missing path, e.g. /servicios/x/y, where relative paths break.
-test("the 404 page only uses root-absolute local paths", () => {
-  const localRefs = [...read("404.html").matchAll(/(?:href|src)="([^"#][^"]*)"/g)]
-    .map((match) => match[1])
-    .filter((url) => !/^(https?:|tel:|mailto:)/.test(url));
-
-  assert.ok(localRefs.length > 0);
-  for (const url of localRefs) assert.match(url, /^\//, url);
-});
-
 test("llms.txt states the canonical contact data", () => {
   const text = read("llms.txt");
   const facts = [

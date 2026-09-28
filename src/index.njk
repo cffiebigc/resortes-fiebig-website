@@ -1,0 +1,283 @@
+---
+layout: layouts/base.njk
+title: Paquetes de resortes en Puerto Montt | Resortes Fiebig
+description: Taller familiar desde 1994. Fabricamos y reparamos paquetes de resortes para camiones, camionetas, buses y remolques en Puerto Montt, Región de Los Lagos.
+og:
+  title: Resortes Fiebig | Paquetes de resortes en Puerto Montt
+  description: Fabricación y reparación de paquetes de resortes para camiones, camionetas y remolques. Taller familiar en Puerto Montt desde 1994.
+schema: true
+skipTo: servicios
+---
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero__copy">
+      <h1 class="hero__title">Paquetes de resortes que aguantan los caminos del sur.</h1>
+      <div class="hero__side">
+        <p class="hero__lead">
+          Fabricamos y reparamos la suspensión de camiones, camionetas y remolques en nuestro taller de Puerto
+          Montt. Desde 1994.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="{{ site.phone.href }}" data-track="call" data-track-location="hero"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al {{ site.phone.display }}</a
+          >
+          <a
+            class="btn btn--outline"
+            href="{{ site.whatsapp }}"
+            data-track="whatsapp"
+            data-track-location="hero"
+            target="_blank"
+            rel="noopener"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>Cotizar por
+            WhatsApp</a
+          >
+          <a
+            class="btn btn--outline"
+            href="{{ site.maps.directions }}"
+            data-track="directions"
+            data-track-location="hero"
+            target="_blank"
+            rel="noopener"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>Cómo
+            llegar</a
+          >
+        </div>
+        <p class="hero__where">Génesis 39, Parque Industrial Recondo, Puerto Montt.</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero__art">
+    <div class="container">
+      {% include "partials/spring-hero.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--services" id="servicios">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Lo que hacemos en el taller</h2>
+      <p class="section__lead">
+        Un paquete de resortes tiene pocas partes, pero cada una falla de forma distinta. Las conocemos todas y
+        las fabricamos acá.
+      </p>
+    </div>
+
+    <figure class="diagram">
+      {% include "partials/spring-diagram.njk" %}
+      <figcaption class="diagram__legend">
+        <ol>
+          <li><b>Hoja madre.</b> La hoja larga que sostiene el paquete.</li>
+          <li><b>Ojos y bujes.</b> Donde el paquete se fija al chasis.</li>
+          <li><b>Hojas graduadas.</b> Reparten la carga y dan la rigidez.</li>
+          <li><b>Perno centro.</b> Mantiene las hojas firmes y unidas, y el paquete compacto.</li>
+          <li><b>Abrazaderas.</b> Evitan que las hojas se desalineen.</li>
+        </ol>
+      </figcaption>
+    </figure>
+
+    <div class="services">
+      <article class="service">
+        <h3>Fabricación de paquetes completos</h3>
+        <p>
+          A medida o según muestra, para cualquier marca y modelo. También paquetes que ya no vienen de fábrica.
+        </p>
+      </article>
+      <article class="service">
+        <h3>Reparación de paquetes</h3>
+        <p>Cambio de hojas quebradas, hoja madre, perno centro y abrazaderas. Reemplazamos solo lo que falla.</p>
+      </article>
+      <article class="service">
+        <h3>Re-arqueo de paquetes vencidos</h3>
+        <p>Le devolvemos la curvatura original a un paquete aplastado, sin cambiar todas las hojas.</p>
+      </article>
+      <article class="service">
+        <h3>Refuerzos para más carga</h3>
+        <p>Agregamos hojas o subimos el calibre cuando el vehículo carga más de lo que traía de fábrica.</p>
+      </article>
+      <article class="service">
+        <h3>Hojas de resorte a medida</h3>
+        <p>Cortadas, curvadas y adaptadas en el taller, con el largo, ancho y espesor que necesitas.</p>
+      </article>
+      <article class="service">
+        <h3>Bujes, pernos y accesorios</h3>
+        <p>
+          Bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U) para dejar el paquete montado y listo.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--process" id="proceso">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Cómo trabajamos</h2>
+      <p class="section__lead">
+        Sin vueltas. Antes de empezar te decimos qué se hace y cuánto debería costar. Si algo cambia, te avisamos.
+      </p>
+    </div>
+
+    <ol class="steps">
+      <li class="step">
+        <h3 class="step__title">Revisión</h3>
+        <p>Traes el vehículo o el paquete al taller. Revisamos hojas, ojos, bujes y accesorios.</p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Presupuesto</h3>
+        <p>
+          Te decimos qué conviene reparar y qué reemplazar, con un valor estimado. El precio final se define al
+          desarmar el paquete.
+        </p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Trabajo en taller</h3>
+        <p>
+          Desarmamos el paquete, curvamos y adaptamos las hojas. Si aparece un imprevisto, como otra hoja
+          quebrada, te avisamos de inmediato.
+        </p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Montaje</h3>
+        <p>Armamos el paquete, lo instalamos y lo dejamos listo para cargar.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section--vehicles" id="vehiculos">
+  <div class="container vehicles__grid">
+    <div class="section__head">
+      <h2 class="section__title">Para todo lo que carga</h2>
+      <p class="section__lead">
+        Desde una camioneta que sube al campo hasta un tractocamión que va y vuelve de Chiloé.
+      </p>
+    </div>
+    <ul class="vehicles">
+      <li>Camiones pesados y tractocamiones</li>
+      <li>Camiones ¾ y livianos</li>
+      <li>Camionetas y 4x4</li>
+      <li>Buses y minibuses</li>
+      <li>Remolques, carros y semirremolques</li>
+      <li>Maquinaria agrícola y forestal</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--about" id="taller">
+  <div class="container about__grid">
+    <div class="about__story">
+      <h2 class="section__title">Taller familiar en Puerto Montt desde 1994</h2>
+      <p>
+        Resortes Fiebig partió en 1994 y sigue siendo un taller de familia. Más de treinta años fabricando y
+        reparando paquetes de resortes para quienes mueven carga en la Región de Los Lagos: transporte,
+        acuicultura, forestal, agro y camioneros independientes que necesitan volver a la ruta rápido.
+      </p>
+      <p>
+        Acá no se cambia un paquete completo por una hoja quebrada. Se revisa, se repara lo que se puede reparar y
+        se fabrica lo que no se consigue.
+      </p>
+    </div>
+    <ul class="reasons">
+      <li class="reason">
+        <h3>Fabricación propia</h3>
+        <p>Hacemos las hojas en el taller. No dependemos de un repuesto que no llega.</p>
+      </li>
+      <li class="reason">
+        <h3>Trabajo honesto</h3>
+        <p>
+          Reparamos lo reparable y reemplazamos solo lo necesario. Si al desarmar aparece algo más, te avisamos.
+        </p>
+      </li>
+      <li class="reason">
+        <h3>Experiencia en estos caminos</h3>
+        <p>Treinta años viendo cómo se comporta un paquete con ripio, barro, lluvia y sobrecarga.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--contact" id="contacto">
+  <div class="container contact__grid">
+    <div class="contact__info">
+      <h2 class="section__title">Ven al taller o escríbenos</h2>
+      <p class="section__lead">Si puedes, manda una foto del paquete por WhatsApp. Con eso ya te orientamos.</p>
+      <dl class="contact__list">
+        <div>
+          <dt>Dirección</dt>
+          <dd>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>
+            <a
+              href="{{ site.maps.search }}"
+              data-track="directions"
+              data-track-location="contacto"
+              target="_blank"
+              rel="noopener"
+              >Génesis 39, Parque Industrial Recondo<br />Puerto Montt, Región de Los Lagos</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt>Horario</dt>
+          <dd>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock" /></svg>Lunes a
+            viernes, 8:00 a 12:00 y 14:00 a 18:00
+          </dd>
+        </div>
+        <div>
+          <dt>Teléfono</dt>
+          <dd>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg
+            ><a href="{{ site.phone.href }}" data-track="call" data-track-location="contacto">{{ site.phone.international }}</a>
+          </dd>
+        </div>
+        <div>
+          <dt>WhatsApp</dt>
+          <dd>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+            <a
+              href="{{ site.whatsapp }}"
+              data-track="whatsapp"
+              data-track-location="contacto"
+              target="_blank"
+              rel="noopener"
+              >Escribir por WhatsApp</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt>Correo</dt>
+          <dd>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-mail" /></svg
+            ><a href="mailto:{{ site.email }}" data-track="email" data-track-location="contacto"
+              >{{ site.email }}</a
+            >
+          </dd>
+        </div>
+      </dl>
+      <div class="contact__actions">
+        <a class="btn btn--primary" href="{{ site.phone.href }}" data-track="call" data-track-location="contacto"
+          ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al {{ site.phone.display }}</a
+        >
+        <a
+          class="btn btn--outline btn--outline-dark"
+          href="{{ site.maps.directions }}"
+          data-track="directions"
+          data-track-location="contacto"
+          target="_blank"
+          rel="noopener"
+          ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>Cómo llegar</a
+        >
+      </div>
+    </div>
+    <div class="contact__map">
+      <iframe
+        title="Mapa: Resortes Fiebig, Génesis 39, Parque Industrial Recondo, Puerto Montt"
+        src="{{ site.maps.embed }}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>

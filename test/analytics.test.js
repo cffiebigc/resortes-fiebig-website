@@ -9,7 +9,7 @@ const GA_ID = "G-QXR092YVYG";
 const PRODUCTION_HOST = "www.resortesfiebig.cl";
 
 // Runs js/analytics.js against a minimal fake browser and exposes what it did.
-function load(hostname) {
+function load(hostname, { withoutHasOwn = false } = {}) {
   const source = fs.readFileSync(path.join(ROOT, "js", "analytics.js"), "utf8");
   const appended = [];
   const listeners = {};
@@ -22,7 +22,10 @@ function load(hostname) {
     },
   };
 
-  vm.runInNewContext(source, { window, document });
+  const context = vm.createContext({ window, document });
+
+  if (withoutHasOwn) vm.runInContext("delete Object.hasOwn;", context);
+  vm.runInContext(source, context);
 
   function click(target) {
     const event = {
@@ -45,7 +48,7 @@ function load(hostname) {
     return JSON.parse(JSON.stringify(calls));
   }
 
-  return { appended, listeners, click, events };
+  return { window, appended, listeners, click, events };
 }
 
 // A click target inside a tracked link, e.g. its <svg> icon: closest() finds the <a>.
@@ -73,6 +76,26 @@ for (const hostname of ["localhost", "127.0.0.1", "cffiebigc.github.io", "resort
     assert.equal(listeners.click, undefined);
   });
 }
+
+// gtag.js only treats dataLayer entries that are Arguments objects as commands; a rest-args refactor would silently stop GA.
+test("queues the js and config commands as Arguments objects", () => {
+  const { window } = load(PRODUCTION_HOST);
+  const [js, config] = window.dataLayer;
+
+  for (const entry of [js, config]) assert.equal(Object.prototype.toString.call(entry), "[object Arguments]");
+  assert.equal(js[0], "js");
+  assert.equal(Object.prototype.toString.call(js[1]), "[object Date]");
+  assert.deepEqual(Array.from(config), ["config", GA_ID]);
+});
+
+// iOS 12 Safari (iPhone 5s and 6) has no Object.hasOwn.
+test("tracks clicks on engines without Object.hasOwn", () => {
+  const { click, events } = load(PRODUCTION_HOST, { withoutHasOwn: true });
+
+  click(insideLink({ track: "whatsapp", trackLocation: "hero" }));
+
+  assert.equal(events()[0][1], "click_whatsapp");
+});
 
 const EVENTS = [
   ["call", "click_call"],

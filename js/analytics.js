@@ -33,7 +33,7 @@
     const link = target && typeof target.closest === "function" ? target.closest("a[data-track]") : null;
     const track = link ? link.dataset.track : undefined;
 
-    if (!Object.hasOwn(EVENT_NAMES, track)) return;
+    if (!Object.prototype.hasOwnProperty.call(EVENT_NAMES, track)) return;
 
     window.gtag("event", EVENT_NAMES[track], {
       link_location: link.dataset.trackLocation || "desconocida",

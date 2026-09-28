@@ -2,7 +2,8 @@
 // Prints the static SVG markup of the leaf-spring pack. Usage:
 //   node scripts/build-spring.js hero    > hero markup
 //   node scripts/build-spring.js diagram > services diagram (with callouts)
-require("../js/spring.js");
+//   node scripts/build-spring.js --write  > rewrites the spring partials in src/_includes/partials
+require("../src/js/spring.js");
 
 const S = globalThis.SpringGeometry;
 const variant = process.argv[2] && !process.argv[2].startsWith("--") ? process.argv[2] : "hero";
@@ -42,9 +43,9 @@ const body = `  <g class="spring__leaves">
     ${clips}
   </g>`;
 
-const inject = process.argv.includes("--inject");
+const write = process.argv.includes("--write");
 
-if (inject) {
+if (write) {
   // handled below
 } else if (variant === "hero") {
   console.log(`<svg class="spring" viewBox="0 0 ${S.WIDTH} ${S.HEIGHT}" preserveAspectRatio="xMidYMax meet" data-animate="hero" aria-hidden="true" focusable="false">
@@ -79,22 +80,18 @@ ${marks}
 </svg>`);
 }
 
-// --inject: rewrite index.html in place, replacing the blocks between
-// <!-- spring:<variant>:start --> and <!-- spring:<variant>:end -->
-if (process.argv.includes("--inject")) {
+// --write: regenerate the spring partials used by the hero and the services diagram.
+if (process.argv.includes("--write")) {
   const fs = require("fs");
   const path = require("path");
-  const file = path.join(__dirname, "..", "index.html");
-  let html = fs.readFileSync(file, "utf8");
   const { execFileSync } = require("child_process");
+  const dir = path.join(__dirname, "..", "src", "_includes", "partials");
 
   for (const v of ["hero", "diagram"]) {
     const markup = execFileSync(process.execPath, [__filename, v]).toString().trim();
-    const re = new RegExp(`(<!-- spring:${v}:start -->)[\\s\\S]*?(<!-- spring:${v}:end -->)`);
 
-    html = html.replace(re, `$1\n${markup}\n$2`);
+    fs.writeFileSync(path.join(dir, `spring-${v}.njk`), `${markup}\n`);
   }
 
-  fs.writeFileSync(file, html);
-  console.error("index.html updated");
+  console.error("spring partials updated");
 }

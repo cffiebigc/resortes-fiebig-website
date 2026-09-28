@@ -23,9 +23,7 @@ test("the business node has a stable id, www urls, a logo and its public profile
   assert.equal(business.url, SITE_URL);
   assert.equal(business.logo, `${SITE_URL}assets/apple-touch-icon.png`);
   assert.equal(business.image, `${SITE_URL}assets/og.png`);
-  assert.deepEqual(business.sameAs, [
-    "https://www.facebook.com/resortes.fiebig",
-  ]);
+  assert.deepEqual(business.sameAs, ["https://www.facebook.com/resortes.fiebig"]);
 });
 
 test("the business node never states prices", () => {
@@ -35,12 +33,8 @@ test("the business node never states prices", () => {
 
 test("the offer catalog lists the six services shown on the page", () => {
   const html = read("index.html");
-  const pageServices = [
-    ...html.matchAll(/<article class="service">\s*<h3>([^<]+)<\/h3>/g),
-  ].map((m) => m[1]);
-  const catalog = node("AutoRepair").hasOfferCatalog.itemListElement.map(
-    (offer) => offer.itemOffered.name,
-  );
+  const pageServices = [...html.matchAll(/<article class="service">\s*<h3>([^<]+)<\/h3>/g)].map((m) => m[1]);
+  const catalog = node("AutoRepair").hasOfferCatalog.itemListElement.map((offer) => offer.itemOffered.name);
 
   assert.equal(pageServices.length, 6);
   assert.deepEqual(catalog, pageServices);

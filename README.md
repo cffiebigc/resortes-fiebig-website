@@ -31,7 +31,7 @@ _site/                     Salida de Eleventy (no se versiona)
 
 ```sh
 npm install
-npm start              # servidor local con recarga en http://localhost:8765
+npm start              # servidor local con recarga (puerto 8765)
 npm run build          # genera _site/
 npm test               # genera _site/ y corre los tests
 npm run build:spring   # regenera los parciales del resorte tras tocar src/js/spring.js

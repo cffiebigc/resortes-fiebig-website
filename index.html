@@ -253,7 +253,7 @@
             <li><a href="#taller">El taller</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
-          <a class="site-nav__phone" href="tel:+56652263566"
+          <a class="site-nav__phone" href="tel:+56652263566" data-track="call" data-track-location="nav"
             ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>(65) 226 3566</a
           >
         </nav>
@@ -271,13 +271,15 @@
                 Montt. Desde 1994.
               </p>
               <div class="hero__actions">
-                <a class="btn btn--primary" href="tel:+56652263566"
+                <a class="btn btn--primary" href="tel:+56652263566" data-track="call" data-track-location="hero"
                   ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al (65)
                   226 3566</a
                 >
                 <a
                   class="btn btn--outline"
                   href="https://wa.me/56995190145?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20de%20resortes"
+                  data-track="whatsapp"
+                  data-track-location="hero"
                   target="_blank"
                   rel="noopener"
                   ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>Cotizar por
@@ -286,6 +288,8 @@
                 <a
                   class="btn btn--outline"
                   href="https://www.google.com/maps/dir/?api=1&destination=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+                  data-track="directions"
+                  data-track-location="hero"
                   target="_blank"
                   rel="noopener"
                   ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>Cómo
@@ -542,6 +546,8 @@
                   <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+                    data-track="directions"
+                    data-track-location="contacto"
                     target="_blank"
                     rel="noopener"
                     >Génesis 39, Parque Industrial Recondo<br />Puerto Montt, Región de Los Lagos</a
@@ -559,7 +565,7 @@
                 <dt>Teléfono</dt>
                 <dd>
                   <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg
-                  ><a href="tel:+56652263566">+56 65 226 3566</a>
+                  ><a href="tel:+56652263566" data-track="call" data-track-location="contacto">+56 65 226 3566</a>
                 </dd>
               </div>
               <div>
@@ -568,6 +574,8 @@
                   <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
                   <a
                     href="https://wa.me/56995190145?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20de%20resortes"
+                    data-track="whatsapp"
+                    data-track-location="contacto"
                     target="_blank"
                     rel="noopener"
                     >Escribir por WhatsApp</a
@@ -578,18 +586,22 @@
                 <dt>Correo</dt>
                 <dd>
                   <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-mail" /></svg
-                  ><a href="mailto:contacto@resortesfiebig.cl">contacto@resortesfiebig.cl</a>
+                  ><a href="mailto:contacto@resortesfiebig.cl" data-track="email" data-track-location="contacto"
+                    >contacto@resortesfiebig.cl</a
+                  >
                 </dd>
               </div>
             </dl>
             <div class="contact__actions">
-              <a class="btn btn--primary" href="tel:+56652263566"
+              <a class="btn btn--primary" href="tel:+56652263566" data-track="call" data-track-location="contacto"
                 ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al (65)
                 226 3566</a
               >
               <a
                 class="btn btn--outline btn--outline-dark"
                 href="https://www.google.com/maps/dir/?api=1&destination=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+                data-track="directions"
+                data-track-location="contacto"
                 target="_blank"
                 rel="noopener"
                 ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-map-pin" /></svg>Cómo llegar</a
@@ -643,12 +655,14 @@
     </footer>
 
     <div class="cta-bar">
-      <a class="btn btn--primary" href="tel:+56652263566"
+      <a class="btn btn--primary" href="tel:+56652263566" data-track="call" data-track-location="barra-movil"
         ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar</a
       >
       <a
         class="btn btn--outline"
         href="https://wa.me/56995190145?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20de%20resortes"
+        data-track="whatsapp"
+        data-track-location="barra-movil"
         target="_blank"
         rel="noopener"
         ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>WhatsApp</a
@@ -656,6 +670,8 @@
       <a
         class="btn btn--outline btn--icon"
         href="https://www.google.com/maps/dir/?api=1&destination=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt"
+        data-track="directions"
+        data-track-location="barra-movil"
         target="_blank"
         rel="noopener"
         aria-label="Cómo llegar"

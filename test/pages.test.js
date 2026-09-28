@@ -21,7 +21,7 @@ test("the 404 page only uses root-absolute local paths", () => {
   for (const url of localRefs) assert.match(url, /^\//, url);
 });
 
-test("llms.txt states the canonical contact data and no prices", () => {
+test("llms.txt states the canonical contact data", () => {
   const text = read("llms.txt");
   const facts = [
     SITE_URL,
@@ -31,5 +31,18 @@ test("llms.txt states the canonical contact data and no prices", () => {
   ];
 
   for (const fact of facts) assert.ok(text.includes(fact), fact);
-  assert.doesNotMatch(text, /\$/);
+});
+
+test("llms.txt never states prices or warranty terms", () => {
+  const text = read("llms.txt");
+
+  assert.doesNotMatch(text, /\$|CLP|\bUF\b|pesos|\d{1,3}\.\d{3}/i);
+  assert.doesNotMatch(text, /garant[ií]a/i);
+});
+
+test("llms.txt only mentions coil springs to rule them out", () => {
+  const text = read("llms.txt");
+
+  assert.equal(text.match(/espiral/gi).length, 1);
+  assert.match(text, /No trabaja resortes espirales\./);
 });

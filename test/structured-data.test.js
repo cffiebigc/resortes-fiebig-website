@@ -26,9 +26,8 @@ test("the business node has a stable id, www urls, a logo and its public profile
   assert.deepEqual(business.sameAs, ["https://www.facebook.com/resortes.fiebig"]);
 });
 
-test("the business node never states prices", () => {
-  assert.equal(node("AutoRepair").priceRange, undefined);
-  assert.doesNotMatch(JSON.stringify(graph()), /"price"/);
+test("no structured data node states prices", () => {
+  assert.doesNotMatch(JSON.stringify(graph()), /price/i);
 });
 
 test("the offer catalog lists the six services shown on the page", () => {

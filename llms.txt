@@ -11,7 +11,7 @@
 - Hojas de resorte a medida.
 - Bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U).
 
-No trabajan resortes espirales.
+No trabaja resortes espirales.
 
 ## Cómo cotizar
 

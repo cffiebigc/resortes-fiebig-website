@@ -2,9 +2,15 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.join(__dirname, "..");
+const SITE_DIR = path.join(ROOT, "_site");
 const SITE_URL = "https://www.resortesfiebig.cl/";
 
+// Tests read the published artifact, not the sources.
 function read(file) {
+  return fs.readFileSync(path.join(SITE_DIR, file), "utf8");
+}
+
+function readSource(file) {
   return fs.readFileSync(path.join(ROOT, file), "utf8");
 }
 
@@ -21,4 +27,4 @@ function jsonLdBlocks(html) {
   return blocks.map((match) => JSON.parse(match[1]));
 }
 
-module.exports = { ROOT, SITE_URL, read, attr, jsonLdBlocks };
+module.exports = { ROOT, SITE_DIR, SITE_URL, read, readSource, attr, jsonLdBlocks };

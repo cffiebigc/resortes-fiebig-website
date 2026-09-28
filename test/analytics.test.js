@@ -1,16 +1,14 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
 const vm = require("node:vm");
-const { ROOT, read } = require("./helpers");
+const { read } = require("./helpers");
 
 const GA_ID = "G-QXR092YVYG";
 const PRODUCTION_HOST = "www.resortesfiebig.cl";
 
 // Runs js/analytics.js against a minimal fake browser and exposes what it did.
 function load(hostname, { withoutHasOwn = false } = {}) {
-  const source = fs.readFileSync(path.join(ROOT, "js", "analytics.js"), "utf8");
+  const source = read("js/analytics.js");
   const appended = [];
   const listeners = {};
   const window = { location: { hostname } };

@@ -1,14 +1,14 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { SITE_URL, read, attr } = require("./helpers");
+const { SITE_URL, read, readSource, attr } = require("./helpers");
 
-const PUBLIC_FILES = ["index.html", "404.html", "robots.txt", "sitemap.xml", "llms.txt", "README.md"];
+const PUBLISHED_FILES = ["index.html", "404.html", "robots.txt", "sitemap.xml", "llms.txt"];
 const XML_NAMESPACES = /http:\/\/www\.(w3\.org|sitemaps\.org)\//g;
 
 test("no public file points at the apex domain or at plain http", () => {
-  for (const file of PUBLIC_FILES) {
-    const text = read(file);
+  const files = [...PUBLISHED_FILES.map((file) => [file, read(file)]), ["README.md", readSource("README.md")]];
 
+  for (const [file, text] of files) {
     assert.doesNotMatch(text, /https?:\/\/resortesfiebig\.cl/, file);
     assert.doesNotMatch(text.replace(XML_NAMESPACES, ""), /http:\/\//, file);
   }

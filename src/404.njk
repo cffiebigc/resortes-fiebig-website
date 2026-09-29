@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Página no encontrada | Resortes Fiebig
+noindex: true
+permalink: 404.html
+eleventyExcludeFromCollections: true
+---
+<section class="hero">
+  <div class="container">
+    <div class="hero__copy">
+      <h1 class="hero__title">Esta página no existe.</h1>
+      <div class="hero__side">
+        <p class="hero__lead">
+          Puede que el link esté malo o que la página se haya movido. Si buscas un paquete de resortes, llámanos o
+          escríbenos.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="{{ site.phone.href }}" data-track="call" data-track-location="404"
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#icon-phone" /></svg
+            >Llamar al {{ site.phone.display }}</a
+          >
+          <a
+            class="btn btn--outline"
+            href="{{ site.whatsapp }}"
+            data-track="whatsapp"
+            data-track-location="404"
+            target="_blank"
+            rel="noopener"
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#icon-whatsapp" /></svg
+            >Cotizar por WhatsApp</a
+          >
+          <a class="btn btn--outline" href="/">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

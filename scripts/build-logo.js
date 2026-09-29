@@ -8,11 +8,11 @@
 // main leaf on top).
 //
 // Outputs:
-//   assets/logo-mark.svg   mark, light background
-//   assets/logo.svg        horizontal lockup, light background (text as paths)
-//   assets/logo-dark.svg   horizontal lockup, dark background
-//   assets/favicon.svg     mark on a dark rounded square
-// and rewrites the <!-- logo:mark:start/end --> blocks in index.html.
+//   src/assets/logo-mark.svg   mark, light background
+//   src/assets/logo.svg        horizontal lockup, light background (text as paths)
+//   src/assets/logo-dark.svg   horizontal lockup, dark background
+//   src/assets/favicon.svg     mark on a dark rounded square
+// and src/_includes/partials/logo-mark.njk, the inline mark shared by the header and the footer.
 //
 // Requires `npm install` (opentype.js). Fonts are fetched from Google Fonts
 // into scripts/.fonts on first run.
@@ -200,20 +200,16 @@ ${bg}${markMarkup()}
 `;
 }
 
-function injectInline() {
-  const file = path.join(ROOT, "index.html");
-  let html = fs.readFileSync(file, "utf8");
-  const markup = `<svg class="logo" viewBox="0 0 ${BOX} ${BOX}" aria-hidden="true" focusable="false">\n${markMarkup()}\n</svg>`;
-  const re = /(<!-- logo:mark:start -->)[\s\S]*?(<!-- logo:mark:end -->)/g;
-  let count = 0;
+function inlineMarkSvg() {
+  return `<svg class="logo" viewBox="0 0 ${BOX} ${BOX}" aria-hidden="true" focusable="false">\n${markMarkup()}\n</svg>`;
+}
 
-  html = html.replace(re, () => {
-    count += 1;
+// The mark is shared by the header and the footer through one partial.
+function writeMarkPartial() {
+  const file = path.join(ROOT, "src", "_includes", "partials", "logo-mark.njk");
 
-    return `<!-- logo:mark:start -->\n${markup}\n<!-- logo:mark:end -->`;
-  });
-  fs.writeFileSync(file, html);
-  console.error(`index.html: ${count} mark block(s) updated`);
+  fs.writeFileSync(file, `${inlineMarkSvg()}\n`);
+  console.error("src/_includes/partials/logo-mark.njk");
 }
 
 async function main() {
@@ -222,15 +218,15 @@ async function main() {
     body: await loadFont("body"),
   };
   const out = (name, content) => {
-    fs.writeFileSync(path.join(ROOT, "assets", name), content);
-    console.error(`assets/${name}`);
+    fs.writeFileSync(path.join(ROOT, "src", "assets", name), content);
+    console.error(`src/assets/${name}`);
   };
 
   out("logo-mark.svg", markSvg("light"));
   out("logo.svg", lockupSvg("light", fonts));
   out("logo-dark.svg", lockupSvg("dark", fonts));
   out("favicon.svg", faviconSvg());
-  injectInline();
+  writeMarkPartial();
 }
 
 main().catch((error) => {

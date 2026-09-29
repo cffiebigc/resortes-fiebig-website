@@ -1,40 +1,52 @@
 # Resortes Fiebig — sitio web
 
-Landing page de una sola página para **Resortes Fiebig Ltda.**, taller de fabricación y reparación de paquetes de resortes en Puerto Montt. Sitio estático (HTML, CSS y JS sin dependencias) publicado en GitHub Pages bajo `www.resortesfiebig.cl`.
+Sitio de **Resortes Fiebig Ltda.**, taller de fabricación y reparación de paquetes de resortes en Puerto Montt. Sitio estático generado con [Eleventy](https://www.11ty.dev/) y publicado en GitHub Pages bajo `www.resortesfiebig.cl`.
 
 ## Estructura
 
 ```
-index.html            Página completa (hero, servicios, proceso, vehículos, taller, contacto)
-404.html              Página de error (noindex, rutas absolutas porque Pages la sirve en cualquier ruta)
-css/styles.css        Tokens de diseño, base, layout y componentes
-js/spring.js          Geometría paramétrica del paquete de resortes (compartida)
-js/main.js            Navegación, sección activa, barra móvil y animación del hero
-scripts/build-spring.js  Genera el SVG del resorte e inyecta el markup en index.html
-scripts/build-logo.js    Genera la marca, el lockup y el favicon; inyecta la marca en index.html
-assets/               logo.svg, logo-dark.svg, logo-mark.svg, favicon.svg, apple-touch-icon.png, og.png
-test/                 Tests de SEO y marcado (node:test, sin dependencias)
-robots.txt, sitemap.xml, llms.txt, CNAME, .nojekyll
+src/                       Fuentes del sitio (lo único que Eleventy lee)
+  index.njk                Portada (hero, servicios, proceso, vehículos, taller, contacto)
+  404.njk                  Página de error (noindex; Pages la sirve en cualquier ruta, por eso todo es absoluto)
+  sitemap.njk              Sitemap generado, con la fecha del último commit de cada página
+  _data/site.js            Fuente única de teléfono, WhatsApp, correo, dirección y links de Maps
+  _data/fonts.json         Fuentes a precargar (lo escribe scripts/fetch-fonts.js)
+  _includes/layouts/       base.njk: head, header, footer, barra del celular y scripts
+  _includes/partials/      Sprite de íconos, header, footer, barra del celular, marca, resorte y fuentes
+  _includes/schema/        JSON-LD del taller
+  css/styles.css           Tokens de diseño, base, layout y componentes
+  js/spring.js             Geometría paramétrica del paquete de resortes (compartida)
+  js/main.js               Navegación, sección activa, barra móvil y animación del hero
+  js/analytics.js          GA4 solo en producción y eventos de los botones de contacto (data-track)
+  assets/                  Logos, íconos, imagen OG y fuentes propias (con sus licencias OFL)
+  robots.txt, llms.txt     Se copian tal cual
+  <clave>.txt              Clave de IndexNow
+scripts/                   build-spring, build-logo, fetch-fonts e indexnow
+test/                      Tests con node:test sobre lo que se publica (_site/)
+.github/workflows/         deploy.yml
+_site/                     Salida de Eleventy (no se versiona)
 ```
 
 ## Desarrollo
 
-No hay build. Sirve la carpeta con cualquier servidor estático:
-
 ```sh
-python3 -m http.server 8765
-```
-
-Los scripts de build necesitan `npm install` (prettier y opentype.js).
-
-```sh
-npm run build:spring   # regenera el SVG del resorte (hero y diagrama) tras tocar js/spring.js
-npm run build:logo     # regenera assets/logo*.svg, favicon.svg y la marca inline
-npm run format         # prettier sobre html, css y js (ancho 120)
-npm test               # tests de SEO y marcado
+npm install
+npm start              # servidor local con recarga (puerto 8765)
+npm run build          # genera _site/
+npm test               # genera _site/ y corre los tests
+npm run build:spring   # regenera los parciales del resorte tras tocar src/js/spring.js
+npm run build:logo     # regenera src/assets/logo*.svg, favicon.svg y el parcial de la marca
+npm run fonts          # vuelve a bajar las fuentes de Google y regenera el @font-face
+npm run format         # prettier sobre css, js y tests (ancho 120)
 ```
 
 Las fuentes que vectoriza `build:logo` se bajan de Google Fonts a `scripts/.fonts/` la primera vez.
+
+## Deploy
+
+Cada push a `main` corre `.github/workflows/deploy.yml`: instala, corre los tests, publica `_site/` en GitHub Pages y avisa a IndexNow con las URLs del sitemap.
+
+La fuente de Pages tiene que ser «GitHub Actions» (Settings → Pages); si no lo es, el build falla antes de publicar. Para volver atrás, primero se revierte el commit y recién después se cambia la fuente a la rama: al revés, Pages publicaría la raíz del repo, que no tiene `index.html`.
 
 ## Diseño
 

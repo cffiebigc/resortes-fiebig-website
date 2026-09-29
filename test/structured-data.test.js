@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { SITE_URL, read, jsonLdBlocks } = require("./helpers");
+const { SITE_URL, read, readSource, jsonLdBlocks } = require("./helpers");
 
 const BUSINESS_ID = `${SITE_URL}#taller`;
 
@@ -45,4 +45,20 @@ test("the website node names the business as publisher", () => {
   assert.equal(website.url, SITE_URL);
   assert.equal(website.inLanguage, "es-CL");
   assert.deepEqual(website.publisher, { "@id": BUSINESS_ID });
+});
+
+test("the structured data takes its contact data from the site data, not from literals", () => {
+  assert.doesNotMatch(readSource("src/_includes/schema/business.njk"), /56652263566|contacto@|G%C3%A9nesis|Génesis/);
+});
+
+// A value rendered inside a <script> must not be HTML-escaped: &amp; would reach search engines as-is.
+test("the structured data matches the contact links on the page and is not HTML-escaped", () => {
+  const html = read("index.html");
+  const business = node("AutoRepair");
+  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1].replaceAll("&amp;", "&"));
+
+  assert.ok(hrefs.includes(`tel:${business.telephone}`), business.telephone);
+  assert.ok(hrefs.includes(`mailto:${business.email}`), business.email);
+  assert.ok(hrefs.includes(business.hasMap), business.hasMap);
+  assert.doesNotMatch(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1], /&amp;/);
 });

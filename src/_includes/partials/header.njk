@@ -1,0 +1,28 @@
+{%- set home = page.url == "/" -%}
+{%- set anchor = "" if home else "/" -%}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ '#inicio' if home else '/' }}" aria-label="Resortes Fiebig, inicio">
+      {% include "partials/logo-mark.njk" %}
+      <span class="brand__name">Resortes Fiebig</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-principal">
+      <span class="nav-toggle__bar"></span>
+      <span class="visually-hidden">Menú</span>
+    </button>
+
+    <nav class="site-nav" id="nav-principal" aria-label="Principal">
+      <ul class="site-nav__list">
+        <li><a href="{{ anchor }}#servicios">Servicios</a></li>
+        <li><a href="{{ anchor }}#proceso">Cómo trabajamos</a></li>
+        <li><a href="{{ anchor }}#vehiculos">Vehículos</a></li>
+        <li><a href="{{ anchor }}#taller">El taller</a></li>
+        <li><a href="{{ anchor }}#contacto">Contacto</a></li>
+      </ul>
+      <a class="site-nav__phone" href="{{ site.phone.href }}" data-track="call" data-track-location="nav"
+        ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>{{ site.phone.display }}</a
+      >
+    </nav>
+  </div>
+</header>

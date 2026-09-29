@@ -7,6 +7,7 @@ module.exports = {
   phone: {
     display: "(65) 226 3566",
     international: "+56 65 226 3566",
+    e164: "+56652263566",
     href: "tel:+56652263566",
   },
   whatsapp: "https://wa.me/56995190145?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20de%20resortes",

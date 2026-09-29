@@ -11,8 +11,8 @@
         "url": "https://www.resortesfiebig.cl/",
         "logo": "https://www.resortesfiebig.cl/assets/apple-touch-icon.png",
         "image": "https://www.resortesfiebig.cl/assets/og.png",
-        "telephone": "+56652263566",
-        "email": "contacto@resortesfiebig.cl",
+        "telephone": {{ site.phone.e164 | dump | safe }},
+        "email": {{ site.email | dump | safe }},
         "foundingDate": "1994",
         "sameAs": ["https://www.facebook.com/resortes.fiebig"],
         "openingHoursSpecification": [
@@ -29,12 +29,12 @@
             "closes": "18:00"
           }
         ],
-        "hasMap": "https://www.google.com/maps/search/?api=1&query=G%C3%A9nesis+39%2C+Parque+Industrial+Recondo%2C+Puerto+Montt",
+        "hasMap": {{ site.maps.search | dump | safe }},
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Génesis 39, Parque Industrial Recondo",
-          "addressLocality": "Puerto Montt",
-          "addressRegion": "Región de Los Lagos",
+          "streetAddress": {{ site.address.street | dump | safe }},
+          "addressLocality": {{ site.address.city | dump | safe }},
+          "addressRegion": {{ site.address.region | dump | safe }},
           "postalCode": "5500617",
           "addressCountry": "CL"
         },

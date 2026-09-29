@@ -46,6 +46,8 @@ Las fuentes que vectoriza `build:logo` se bajan de Google Fonts a `scripts/.font
 
 Cada push a `main` corre `.github/workflows/deploy.yml`: instala, corre los tests, publica `_site/` en GitHub Pages y avisa a IndexNow con las URLs del sitemap.
 
+La fuente de Pages tiene que ser «GitHub Actions» (Settings → Pages); si no lo es, el build falla antes de publicar. Para volver atrás, primero se revierte el commit y recién después se cambia la fuente a la rama: al revés, Pages publicaría la raíz del repo, que no tiene `index.html`.
+
 ## Diseño
 
 - **Color:** acero (`#1e2a35`, `#55636f`, `#b9c3cc`, `#eef1f3`) y un solo acento azul rey (`#4169e1`) para llamadas a la acción y la hoja madre.

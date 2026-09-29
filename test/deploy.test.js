@@ -36,3 +36,22 @@ test("the IndexNow payload names the host and where the key lives", () => {
     urlList: [SITE_URL],
   });
 });
+
+// Merging while Pages still builds from the branch would publish the repository root, which has no index.html.
+test("the build refuses to publish unless Pages deploys from Actions", () => {
+  const workflow = readSource(".github/workflows/deploy.yml");
+  const guard = workflow.indexOf('--jq .build_type)" = workflow');
+
+  assert.ok(guard > -1, "no Pages source guard");
+  assert.ok(guard < workflow.indexOf("upload-pages-artifact"));
+});
+
+test("only the deploy job can write to Pages", () => {
+  const workflow = readSource(".github/workflows/deploy.yml");
+  const [globalPart] = workflow.split("\njobs:");
+  const deployJob = workflow.slice(workflow.indexOf("\n  deploy:"), workflow.indexOf("\n  indexnow:"));
+
+  assert.doesNotMatch(globalPart, /pages: write|id-token: write/);
+  assert.match(deployJob, /pages: write/);
+  assert.match(deployJob, /id-token: write/);
+});

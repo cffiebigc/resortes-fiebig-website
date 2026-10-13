@@ -1,18 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
-const { SITE_DIR, read } = require("./helpers");
-
-function htmlPages(dir = SITE_DIR) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const full = path.join(dir, entry.name);
-
-    if (entry.isDirectory()) return htmlPages(full);
-
-    return entry.name.endsWith(".html") ? [path.relative(SITE_DIR, full)] : [];
-  });
-}
+const { read, htmlPages } = require("./helpers");
 
 function navHrefs(html) {
   const list = html.match(/<ul class="site-nav__list">([\s\S]*?)<\/ul>/)[1];

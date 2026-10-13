@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const vm = require("node:vm");
-const { read } = require("./helpers");
+const { read, htmlPages } = require("./helpers");
 
 const GA_ID = "G-QXR092YVYG";
 const PRODUCTION_HOST = "www.resortesfiebig.cl";
@@ -137,7 +137,7 @@ test("tracking never blocks the call or WhatsApp navigation", () => {
 });
 
 test("every page loads the analytics script deferred from the root", () => {
-  for (const page of ["index.html", "404.html"]) {
+  for (const page of htmlPages()) {
     assert.match(read(page), /<script src="\/js\/analytics\.js" defer><\/script>/, page);
   }
 });

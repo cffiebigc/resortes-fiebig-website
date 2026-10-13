@@ -20,8 +20,8 @@ test("every page only uses root-absolute local paths", () => {
 });
 
 test("the home nav scrolls to its sections and other pages link back to them", () => {
-  assert.ok(navHrefs(read("index.html")).every((href) => /^#[a-z]+$/.test(href)));
-  assert.ok(navHrefs(read("404.html")).every((href) => /^\/#[a-z]+$/.test(href)));
+  assert.ok(navHrefs(read("index.html")).every((href) => /^#[a-z]+$|^\/[a-z-]+\/$/.test(href)));
+  assert.ok(navHrefs(read("404.html")).every((href) => /^\/#[a-z]+$|^\/[a-z-]+\/$/.test(href)));
 });
 
 test("the 404 page carries the full site chrome", () => {

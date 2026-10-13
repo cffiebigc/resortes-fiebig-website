@@ -1,3 +1,7 @@
+---
+permalink: llms.txt
+eleventyExcludeFromCollections: true
+---
 # Resortes Fiebig
 
 > Taller familiar en Puerto Montt, Chile, desde 1994. Fabrica y repara paquetes de resortes de hojas para camiones, camionetas, buses, remolques y maquinaria agrícola y forestal.
@@ -29,3 +33,8 @@ Camionetas y camiones normales quedan listos durante el día, según la carga de
 - Correo: contacto@resortesfiebig.cl
 
 Atiende clientes de Puerto Montt, Puerto Varas, Llanquihue, Calbuco, Chiloé, Osorno y toda la Región de Los Lagos. El único taller está en Puerto Montt.
+
+## Páginas
+
+{% for item in services %}- [{{ item.h1 }}]({{ site.url }}servicios/{{ item.slug }}/): {{ item.description }}
+{% endfor %}- [Preguntas frecuentes]({{ site.url }}preguntas-frecuentes/)

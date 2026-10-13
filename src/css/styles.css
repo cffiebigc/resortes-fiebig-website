@@ -372,7 +372,8 @@ h3 {
   height: 0.9em;
 }
 
-@media (min-width: 56rem) {
+/* With six menu items, the inline menu only fits from 70rem; below that the toggle menu is used. */
+@media (min-width: 70rem) {
   .nav-toggle {
     display: none;
   }
@@ -393,6 +394,7 @@ h3 {
   }
 
   .site-nav__list a {
+    white-space: nowrap;
     padding: 0.35rem 0;
     border: 0;
     border-bottom: 2px solid transparent;
@@ -719,6 +721,16 @@ h3 {
 .service {
   padding-top: 1rem;
   border-top: 3px solid var(--steel-900);
+}
+
+.service h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service h3 a:hover,
+.service h3 a:focus-visible {
+  color: var(--royal);
 }
 
 .service p {

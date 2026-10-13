@@ -21,10 +21,19 @@ test("the turnaround is never phrased with the old wording", () => {
   eachPage((page, text) => assert.doesNotMatch(text, /tres cuartos de d[ií]a/i, page));
 });
 
+// A question may name them as long as the answer right after it says no.
 test("coil springs are only mentioned to rule them out", () => {
   eachPage((page, text) => {
-    for (const sentence of text.split(/(?<=[.?!])\s+/)) {
-      if (/espiral/i.test(sentence)) assert.match(sentence, /\bno\b/i, `${page}: ${sentence}`);
-    }
+    const sentences = text.split(/(?<=[.?!])\s+/);
+
+    sentences.forEach((sentence, index) => {
+      if (!/espiral/i.test(sentence)) return;
+
+      const denial = sentence.trim().endsWith("?")
+        ? /^No\b/.test(sentences[index + 1] ?? "")
+        : /\bno\b/i.test(sentence);
+
+      assert.ok(denial, `${page}: ${sentence}`);
+    });
   });
 });

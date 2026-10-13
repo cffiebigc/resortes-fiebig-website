@@ -1,0 +1,87 @@
+---
+pagination:
+  data: services
+  size: 1
+  alias: service
+  addAllPagesToCollections: true
+permalink: "servicios/{{ service.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ service.title }}"
+  description: "{{ service.description }}"
+  og:
+    title: "{{ service.title }}"
+    description: "{{ service.description }}"
+---
+<section class="hero hero--page">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="/">Inicio</a> <span aria-hidden="true">›</span> <a href="/#servicios">Servicios</a>
+    </nav>
+    <div class="hero__copy">
+      <h1 class="hero__title hero__title--page">{{ service.h1 }}</h1>
+      <div class="hero__side">
+        <p class="hero__lead">{{ service.intro }}</p>
+        <div class="hero__actions">
+          <a
+            class="btn btn--primary"
+            href="{{ site.whatsappBase }}{{ service.whatsapp | urlencode }}"
+            data-track="whatsapp"
+            data-track-location="servicio-{{ service.slug }}"
+            target="_blank"
+            rel="noopener"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>Cotizar por
+            WhatsApp</a
+          >
+          <a
+            class="btn btn--outline"
+            href="{{ site.phone.href }}"
+            data-track="call"
+            data-track-location="servicio-{{ service.slug }}"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al
+            {{ site.phone.display }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose">
+    {%- for block in service.sections %}
+    <h2>{{ block.heading }}</h2>
+    {%- if block.items %}
+    <ul>
+      {%- for item in block.items %}
+      <li>{% if item.term %}<b>{{ item.term }}:</b> {{ item.text }}{% else %}{{ item }}{% endif %}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if block.steps %}
+    <ol>
+      {%- for step in block.steps %}
+      <li>{{ step }}</li>
+      {%- endfor %}
+    </ol>
+    {%- endif %}
+    {%- if block.text %}
+    <p>{{ block.text }}</p>
+    {%- endif %}
+    {%- endfor %}
+
+    <h2>Preguntas</h2>
+    {%- for faq in service.faqs %}
+    <h3>{{ faq.q }}</h3>
+    <p>{{ faq.a }}</p>
+    {%- endfor %}
+
+    <h2>Servicios relacionados</h2>
+    <ul class="related">
+      {%- for slug in service.related %}
+      {%- set rel = services | findBy("slug", slug) %}
+      <li><a href="/servicios/{{ rel.slug }}/">{{ rel.h1 }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

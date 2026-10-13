@@ -10,6 +10,7 @@ module.exports = {
     e164: "+56652263566",
     href: "tel:+56652263566",
   },
+  whatsappBase: "https://wa.me/56995190145?text=",
   whatsapp: "https://wa.me/56995190145?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20de%20resortes",
   email: "contacto@resortesfiebig.cl",
   address: {

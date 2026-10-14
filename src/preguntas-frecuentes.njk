@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+permalink: preguntas-frecuentes/
+title: Preguntas frecuentes sobre paquetes de resortes
+description: Cuánto demora, cómo se cotiza, qué pasa si falla, formas de pago y más sobre la reparación y fabricación de paquetes de resortes en Puerto Montt.
+og:
+  title: Preguntas frecuentes sobre paquetes de resortes
+  description: Cuánto demora, cómo se cotiza, qué pasa si falla y formas de pago. Resortes Fiebig, Puerto Montt.
+faqPage: true
+---
+<section class="hero hero--page">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación"><a href="/">Inicio</a></nav>
+    <div class="hero__copy">
+      <h1 class="hero__title hero__title--page">Preguntas frecuentes</h1>
+      <div class="hero__side">
+        <p class="hero__lead">
+          Lo que más nos preguntan sobre la reparación y fabricación de paquetes de resortes. Si no está tu duda,
+          escríbenos.
+        </p>
+        <div class="hero__actions">
+          <a
+            class="btn btn--primary"
+            href="{{ site.whatsapp }}"
+            data-track="whatsapp"
+            data-track-location="preguntas"
+            target="_blank"
+            rel="noopener"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>Escribir por
+            WhatsApp</a
+          >
+          <a class="btn btn--outline" href="{{ site.phone.href }}" data-track="call" data-track-location="preguntas"
+            ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Llamar al
+            {{ site.phone.display }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose">
+    {%- for group in faq %}
+    <h2>{{ group.group }}</h2>
+    {%- for item in group.items %}
+    <h3>{{ item.q }}</h3>
+    <p>{{ item.a }}</p>
+    {%- endfor %}
+    {%- endfor %}
+  </div>
+</section>

@@ -1,18 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
-const { SITE_DIR, read } = require("./helpers");
-
-function htmlPages(dir = SITE_DIR) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const full = path.join(dir, entry.name);
-
-    if (entry.isDirectory()) return htmlPages(full);
-
-    return entry.name.endsWith(".html") ? [path.relative(SITE_DIR, full)] : [];
-  });
-}
+const { read, readSource, htmlPages } = require("./helpers");
 
 function navHrefs(html) {
   const list = html.match(/<ul class="site-nav__list">([\s\S]*?)<\/ul>/)[1];
@@ -32,8 +20,8 @@ test("every page only uses root-absolute local paths", () => {
 });
 
 test("the home nav scrolls to its sections and other pages link back to them", () => {
-  assert.ok(navHrefs(read("index.html")).every((href) => /^#[a-z]+$/.test(href)));
-  assert.ok(navHrefs(read("404.html")).every((href) => /^\/#[a-z]+$/.test(href)));
+  assert.ok(navHrefs(read("index.html")).every((href) => /^#[a-z]+$|^\/[a-z-]+\/$/.test(href)));
+  assert.ok(navHrefs(read("404.html")).every((href) => /^\/#[a-z]+$|^\/[a-z-]+\/$/.test(href)));
 });
 
 test("the 404 page carries the full site chrome", () => {
@@ -42,4 +30,14 @@ test("the 404 page carries the full site chrome", () => {
   for (const part of ['class="site-header"', 'class="site-nav"', 'class="site-footer"', 'class="cta-bar"']) {
     assert.ok(html.includes(part), part);
   }
+});
+
+// Below the inline menu the phone lives inside the collapsed menu, so the call bar has to stay until then.
+test("the mobile call bar stays visible until the inline menu with the phone appears", () => {
+  const blocks = [...readSource("src/css/styles.css").matchAll(/@media \(min-width: ([\d.]+rem)\) \{([\s\S]*?)\n\}/g)];
+  const hiddenFrom = (selector) =>
+    blocks.find(([, , body]) => new RegExp(`${selector} \\{\\s*display: none;`).test(body))?.[1];
+
+  assert.ok(hiddenFrom("\\.nav-toggle"));
+  assert.equal(hiddenFrom("\\.cta-bar"), hiddenFrom("\\.nav-toggle"));
 });

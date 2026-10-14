@@ -15,7 +15,7 @@ skipTo: servicios
       <div class="hero__side">
         <p class="hero__lead">
           Fabricamos y reparamos la suspensión de camiones, camionetas y remolques en nuestro taller de Puerto
-          Montt. Desde 1994.
+          Montt. Desde 1994. Camionetas y camiones normales quedan listos durante el día, según la carga del taller.
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="{{ site.phone.href }}" data-track="call" data-track-location="hero"
@@ -77,34 +77,12 @@ skipTo: servicios
     </figure>
 
     <div class="services">
+      {%- for item in services %}
       <article class="service">
-        <h3>Fabricación de paquetes completos</h3>
-        <p>
-          A medida o según muestra, para cualquier marca y modelo. También paquetes que ya no vienen de fábrica.
-        </p>
+        <h3><a href="/servicios/{{ item.slug }}/">{{ item.card }}</a></h3>
+        <p>{{ item.cardText }}</p>
       </article>
-      <article class="service">
-        <h3>Reparación de paquetes</h3>
-        <p>Cambio de hojas quebradas, hoja madre, perno centro y abrazaderas. Reemplazamos solo lo que falla.</p>
-      </article>
-      <article class="service">
-        <h3>Re-arqueo de paquetes vencidos</h3>
-        <p>Le devolvemos la curvatura original a un paquete aplastado, sin cambiar todas las hojas.</p>
-      </article>
-      <article class="service">
-        <h3>Refuerzos para más carga</h3>
-        <p>Agregamos hojas o subimos el calibre cuando el vehículo carga más de lo que traía de fábrica.</p>
-      </article>
-      <article class="service">
-        <h3>Hojas de resorte a medida</h3>
-        <p>Cortadas, curvadas y adaptadas en el taller, con el largo, ancho y espesor que necesitas.</p>
-      </article>
-      <article class="service">
-        <h3>Bujes, pernos y accesorios</h3>
-        <p>
-          Bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U) para dejar el paquete montado y listo.
-        </p>
-      </article>
+      {%- endfor %}
     </div>
   </div>
 </section>
@@ -179,6 +157,13 @@ skipTo: servicios
       </p>
     </div>
     <ul class="reasons">
+      <li class="reason">
+        <h3>Tu camión vuelve a trabajar rápido</h3>
+        <p>
+          Camionetas y camiones normales quedan listos durante el día, según la carga del taller y el material
+          disponible.
+        </p>
+      </li>
       <li class="reason">
         <h3>Fabricación propia</h3>
         <p>Hacemos las hojas en el taller. No dependemos de un repuesto que no llega.</p>

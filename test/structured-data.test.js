@@ -32,7 +32,9 @@ test("no structured data node states prices", () => {
 
 test("the offer catalog lists the six services shown on the page", () => {
   const html = read("index.html");
-  const pageServices = [...html.matchAll(/<article class="service">\s*<h3>([^<]+)<\/h3>/g)].map((m) => m[1]);
+  const pageServices = [...html.matchAll(/<article class="service">\s*<h3><a href="[^"]+">([^<]+)<\/a><\/h3>/g)].map(
+    (m) => m[1],
+  );
   const catalog = node("AutoRepair").hasOfferCatalog.itemListElement.map((offer) => offer.itemOffered.name);
 
   assert.equal(pageServices.length, 6);

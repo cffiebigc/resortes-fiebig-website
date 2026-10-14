@@ -372,7 +372,8 @@ h3 {
   height: 0.9em;
 }
 
-@media (min-width: 56rem) {
+/* With six menu items, the inline menu only fits from 70rem; below that the toggle menu is used. */
+@media (min-width: 70rem) {
   .nav-toggle {
     display: none;
   }
@@ -393,6 +394,7 @@ h3 {
   }
 
   .site-nav__list a {
+    white-space: nowrap;
     padding: 0.35rem 0;
     border: 0;
     border-bottom: 2px solid transparent;
@@ -721,6 +723,16 @@ h3 {
   border-top: 3px solid var(--steel-900);
 }
 
+.service h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service h3 a:hover,
+.service h3 a:focus-visible {
+  color: var(--royal);
+}
+
 .service p {
   margin-top: 0.5rem;
   color: var(--steel-500);
@@ -963,7 +975,8 @@ body {
   padding-bottom: 4.5rem;
 }
 
-@media (min-width: 56rem) {
+/* Same breakpoint as the inline menu: below it the phone lives inside the collapsed menu. */
+@media (min-width: 70rem) {
   .cta-bar {
     display: none;
   }
@@ -1012,4 +1025,84 @@ body {
 
 .site-footer__copy {
   margin-top: 0.25rem;
+}
+
+/* Service and FAQ pages --------------------------------------------------- */
+
+.hero--page {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero--page .hero__copy {
+  align-items: start;
+}
+
+.hero__title--page {
+  font-size: clamp(2.4rem, 5vw, 3.75rem);
+  line-height: 0.95;
+  max-width: 20ch;
+}
+
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--steel-300);
+}
+
+.breadcrumb a {
+  color: inherit;
+}
+
+.prose {
+  max-width: 46rem;
+}
+
+.prose h2 {
+  margin-top: 2.75rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.05;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose h3 {
+  margin-top: 1.5rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-top: 0.75rem;
+  color: var(--steel-500);
+}
+
+.prose ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+
+.prose li + li {
+  margin-top: 0.4rem;
+}
+
+.prose b {
+  color: var(--steel-900);
+}
+
+.prose .related {
+  list-style: none;
+  padding-left: 0;
+}
+
+.related a {
+  font-weight: 600;
 }

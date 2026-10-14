@@ -1,3 +1,5 @@
+const { serviceSchema, faqPageSchema } = require("./lib/schema");
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
@@ -6,6 +8,9 @@ module.exports = function (eleventyConfig) {
 
   // Every page reports the date of its last commit (CI checks out the full history).
   eleventyConfig.addGlobalData("date", "git Last Modified");
+  eleventyConfig.addFilter("findBy", (list, key, value) => list.find((item) => item[key] === value));
+  eleventyConfig.addFilter("serviceSchema", serviceSchema);
+  eleventyConfig.addFilter("faqPageSchema", faqPageSchema);
   eleventyConfig.addFilter("isoDate", (date) => date.toISOString().slice(0, 10));
 
   return {

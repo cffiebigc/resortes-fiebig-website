@@ -58,48 +58,16 @@
           "@type": "OfferCatalog",
           "name": "Servicios del taller",
           "itemListElement": [
+            {%- for item in services %}
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Fabricación de paquetes completos"
+                "name": {{ item.card | dump | safe }},
+                "url": {{ (site.url + "servicios/" + item.slug + "/") | dump | safe }}
               }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Reparación de paquetes"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Re-arqueo de paquetes vencidos"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Refuerzos para más carga"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Hojas de resorte a medida"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Bujes, pernos y accesorios"
-              }
-            }
+            }{{ "," if not loop.last }}
+            {%- endfor %}
           ]
         }
       },

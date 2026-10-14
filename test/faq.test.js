@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { SITE_URL, read, attr, jsonLdBlocks, visibleText } = require("./helpers");
+const { SITE_URL, read, attr, jsonLdBlocks, visibleText, decodeEntities } = require("./helpers");
 const faq = require("../src/_data/faq");
 
 const PAGE = "preguntas-frecuentes/index.html";
@@ -17,15 +17,15 @@ test("the FAQ page is published with its own title, canonical and a single h1", 
 test("the FAQPage structured data says exactly what the page shows", () => {
   const html = read(PAGE);
   const schema = jsonLdBlocks(html).find((block) => block["@type"] === "FAQPage");
-  const shown = [...html.matchAll(/<h3>([^<]+)<\/h3>/g)].map((match) => match[1].replaceAll("&amp;", "&"));
+  const shown = [...html.split("<main")[1].matchAll(/<h3>([^<]+)<\/h3>\s*<p>([^<]+)<\/p>/g)].map(([, q, a]) => [
+    decodeEntities(q),
+    decodeEntities(a),
+  ]);
 
+  assert.equal(shown.length, questions().length);
   assert.deepEqual(
-    schema.mainEntity.map((entry) => entry.name),
+    schema.mainEntity.map((entry) => [entry.name, entry.acceptedAnswer.text]),
     shown,
-  );
-  assert.deepEqual(
-    schema.mainEntity.map((entry) => entry.acceptedAnswer.text),
-    questions().map((item) => item.a),
   );
 });
 

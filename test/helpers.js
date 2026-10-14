@@ -39,6 +39,16 @@ function visibleText(html) {
     .replace(/\s+/g, " ");
 }
 
+// Undo the HTML escaping the templates apply, to compare published text with its data.
+function decodeEntities(text) {
+  return text
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&amp;", "&");
+}
+
 // Throws on invalid JSON, which is the point: search engines drop broken blocks silently.
 function jsonLdBlocks(html) {
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
@@ -46,4 +56,15 @@ function jsonLdBlocks(html) {
   return blocks.map((match) => JSON.parse(match[1]));
 }
 
-module.exports = { ROOT, SITE_DIR, SITE_URL, read, readSource, attr, jsonLdBlocks, htmlPages, visibleText };
+module.exports = {
+  ROOT,
+  SITE_DIR,
+  SITE_URL,
+  read,
+  readSource,
+  attr,
+  jsonLdBlocks,
+  htmlPages,
+  visibleText,
+  decodeEntities,
+};

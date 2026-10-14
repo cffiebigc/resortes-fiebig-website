@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { read, htmlPages } = require("./helpers");
+const { read, readSource, htmlPages } = require("./helpers");
 
 function navHrefs(html) {
   const list = html.match(/<ul class="site-nav__list">([\s\S]*?)<\/ul>/)[1];
@@ -30,4 +30,14 @@ test("the 404 page carries the full site chrome", () => {
   for (const part of ['class="site-header"', 'class="site-nav"', 'class="site-footer"', 'class="cta-bar"']) {
     assert.ok(html.includes(part), part);
   }
+});
+
+// Below the inline menu the phone lives inside the collapsed menu, so the call bar has to stay until then.
+test("the mobile call bar stays visible until the inline menu with the phone appears", () => {
+  const blocks = [...readSource("src/css/styles.css").matchAll(/@media \(min-width: ([\d.]+rem)\) \{([\s\S]*?)\n\}/g)];
+  const hiddenFrom = (selector) =>
+    blocks.find(([, , body]) => new RegExp(`${selector} \\{\\s*display: none;`).test(body))?.[1];
+
+  assert.ok(hiddenFrom("\\.nav-toggle"));
+  assert.equal(hiddenFrom("\\.cta-bar"), hiddenFrom("\\.nav-toggle"));
 });

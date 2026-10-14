@@ -270,13 +270,13 @@ module.exports = [
     card: "Bujes, pernos y accesorios",
     cardText:
       "Bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U) para dejar el paquete montado y listo.",
-    title: "Bujes, perno centro y pernos U para resortes | Puerto Montt",
-    h1: "Bujes, pernos y abrazaderas para paquetes de resortes",
+    title: "Cambio de bujes, perno centro y pernos U | Puerto Montt",
+    h1: "Cambio de bujes, pernos y abrazaderas de paquetes de resortes",
     description:
       "Cambiamos bujes, pernos centro, abrazaderas y pernos U para dejar el paquete de resortes firme y bien sujeto al eje. Taller en Puerto Montt.",
     whatsapp: "Hola, quiero cotizar el cambio de bujes, pernos o abrazaderas de un paquete de resortes",
     intro:
-      "Un paquete sano igual falla si sus accesorios están gastados. En nuestro taller de Puerto Montt cambiamos bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U), para que el paquete quede firme, alineado y bien sujeto al eje. Tenemos en el taller los repuestos más usados para la reparación y también fabricamos abrazaderas a medida.",
+      "Un paquete sano igual falla si sus accesorios están gastados. En nuestro taller de Puerto Montt cambiamos bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U), para que el paquete quede firme, alineado y bien sujeto al eje. Para la reparación usamos los repuestos más comunes, que tenemos en el taller, y también fabricamos abrazaderas a medida.",
     sections: [
       {
         heading: "Qué hace cada pieza",

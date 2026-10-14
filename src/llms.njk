@@ -13,7 +13,7 @@ eleventyExcludeFromCollections: true
 - Re-arqueo de paquetes vencidos.
 - Refuerzos para más carga.
 - Hojas de resorte a medida.
-- Bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U).
+- Cambio de bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U).
 
 No trabaja resortes espirales.
 
@@ -36,5 +36,5 @@ Atiende clientes de Puerto Montt, Puerto Varas, Llanquihue, Calbuco, Chiloé, Os
 
 ## Páginas
 
-{% for item in services %}- [{{ item.h1 }}]({{ site.url }}servicios/{{ item.slug }}/): {{ item.description }}
+{% for item in services %}- [{{ item.h1 | safe }}]({{ site.url }}servicios/{{ item.slug }}/): {{ item.description | safe }}
 {% endfor %}- [Preguntas frecuentes]({{ site.url }}preguntas-frecuentes/)

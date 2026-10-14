@@ -7,11 +7,11 @@ pagination:
 permalink: "servicios/{{ service.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ service.title }}"
-  description: "{{ service.description }}"
+  title: "{{ service.title | safe }}"
+  description: "{{ service.description | safe }}"
   og:
-    title: "{{ service.title }}"
-    description: "{{ service.description }}"
+    title: "{{ service.title | safe }}"
+    description: "{{ service.description | safe }}"
 ---
 <section class="hero hero--page">
   <div class="container">

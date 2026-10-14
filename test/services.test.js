@@ -2,7 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { SITE_DIR, SITE_URL, read, attr, jsonLdBlocks } = require("./helpers");
+const { SITE_DIR, SITE_URL, read, attr, jsonLdBlocks, decodeEntities } = require("./helpers");
 const services = require("../src/_data/services");
 
 const pageOf = (service) => `servicios/${service.slug}/index.html`;
@@ -73,4 +73,23 @@ test("every service page is in the sitemap", () => {
   const sitemap = read("sitemap.xml");
 
   for (const service of services) assert.ok(sitemap.includes(`<loc>${urlOf(service)}</loc>`), service.slug);
+});
+
+test("service titles and descriptions are escaped exactly once", () => {
+  for (const service of services) {
+    const html = read(pageOf(service));
+
+    assert.equal(decodeEntities(attr(html, /<title>([^<]+)<\/title>/)), service.title);
+    assert.equal(decodeEntities(attr(html, /<meta name="description" content="([^"]+)"/)), service.description);
+    assert.equal(decodeEntities(attr(html, /<meta property="og:title" content="([^"]+)"/)), service.title);
+  }
+});
+
+// The workshop installs parts as part of the repair; it does not sell them loose.
+test("the parts page is framed as a repair service, not as a parts sale", () => {
+  const parts = services.find((service) => service.slug === "bujes-pernos-y-abrazaderas");
+
+  assert.match(parts.title, /^Cambio de/);
+  assert.match(parts.h1, /^Cambio de/);
+  assert.doesNotMatch(parts.intro, /Tenemos en el taller los repuestos/);
 });

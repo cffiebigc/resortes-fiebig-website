@@ -975,7 +975,8 @@ body {
   padding-bottom: 4.5rem;
 }
 
-@media (min-width: 56rem) {
+/* Same breakpoint as the inline menu: below it the phone lives inside the collapsed menu. */
+@media (min-width: 70rem) {
   .cta-bar {
     display: none;
   }

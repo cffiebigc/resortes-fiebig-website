@@ -993,10 +993,6 @@ h3 {
   .cta-bar {
     display: none;
   }
-
-  .site-footer {
-    padding-bottom: 2.5rem;
-  }
 }
 
 /* Footer ------------------------------------------------------------------ */
@@ -1008,6 +1004,12 @@ h3 {
   padding-block: 2.5rem;
   padding-bottom: calc(2.5rem + 4.5rem + env(safe-area-inset-bottom));
   font-size: 0.9rem;
+}
+
+@media (min-width: 70rem) {
+  .site-footer {
+    padding-bottom: 2.5rem;
+  }
 }
 
 .site-footer__brand {
@@ -1074,6 +1076,7 @@ h3 {
 }
 
 .breadcrumb li + li::before {
+  content: "›";
   content: "›" / "";
   margin-right: 0.4rem;
 }

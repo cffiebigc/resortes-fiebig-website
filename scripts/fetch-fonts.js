@@ -59,13 +59,6 @@ async function main() {
     }
   }
 
-  const removed = removeOrphans(
-    dir,
-    faces.map((face) => path.basename(face.file)),
-  );
-
-  if (removed.length) console.error(`removed ${removed.join(", ")}`);
-
   for (const [name, url] of Object.entries(LICENSES)) {
     fs.writeFileSync(path.join(dir, name), await (await download(url)).text());
   }
@@ -81,6 +74,14 @@ async function main() {
 
   fs.writeFileSync(path.join(ROOT, "src", "_includes", "partials", "fonts.css"), `${rules.join("\n")}\n`);
   fs.writeFileSync(path.join(ROOT, "src", "_data", "fonts.json"), `${JSON.stringify({ preload }, null, 2)}\n`);
+
+  // Only now that nothing points at them can the old files go.
+  const removed = removeOrphans(
+    dir,
+    faces.map((face) => path.basename(face.file)),
+  );
+
+  if (removed.length) console.error(`removed ${removed.join(", ")}`);
   console.error(`${faces.length} faces, preload: ${preload.join(", ")}`);
 }
 

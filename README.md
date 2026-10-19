@@ -70,4 +70,4 @@ El logo original de Fiebig (en azul y amarillo) apila tres cosas: media rueda de
 
 ## Datos del negocio
 
-Teléfono, WhatsApp, correo, dirección, horario y links de Maps viven solo en `src/_data/site.js`; las páginas, el JSON-LD y llms.txt los leen de ahí.
+Teléfono, WhatsApp, correo, dirección, horario y links de Maps viven en `src/_data/site.js`; las páginas, el JSON-LD y llms.txt los leen de ahí. Dos excepciones repiten el horario y hay que cambiarlas a mano: la respuesta aprobada de horario en `src/_data/faq.js` y `openingHoursSpecification` en `src/_includes/schema/business.njk`.

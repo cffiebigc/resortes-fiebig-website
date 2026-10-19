@@ -46,3 +46,16 @@ test("structured data goes through the escaping filter", () => {
 test("the sitemap dates pages with the data they declare", () => {
   assert.match(readSource("src/sitemap.njk"), /entry\.date \| lastModified\(entry\.data\.dataSources\) \| isoDate/);
 });
+
+test("lastModified keeps the page date when git is not available", () => {
+  const previous = process.env.GIT_DIR;
+  const date = new Date("2026-01-01T00:00:00Z");
+
+  process.env.GIT_DIR = "/nonexistent";
+  try {
+    assert.equal(lastModified(date, ["src/_data/services.js"]).getTime(), date.getTime());
+  } finally {
+    if (previous === undefined) delete process.env.GIT_DIR;
+    else process.env.GIT_DIR = previous;
+  }
+});

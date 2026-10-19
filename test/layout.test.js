@@ -73,6 +73,19 @@ test("the room for the mobile call bar belongs to the footer", () => {
     /padding-bottom: calc\(2\.5rem \+ 4\.5rem \+ env\(safe-area-inset-bottom\)\);/,
   );
   assert.match(desktop, /\.site-footer \{\s*padding-bottom: 2\.5rem;\s*\}/);
+
+  // Same specificity: the reset only wins when it comes after the base rule.
+  const base = css.indexOf("\n.site-footer {");
+  const reset = css.search(/@media \(min-width: 70rem\) \{\s*\.site-footer \{\s*padding-bottom: 2\.5rem;/);
+
+  assert.ok(reset > base, "the desktop footer reset comes before the base rule");
+});
+
+// The alt-text form of content (Safari 17.4+) is dropped whole by older browsers, which would lose the separator.
+test("breadcrumb separators have a fallback for older browsers", () => {
+  const rule = readSource("src/css/styles.css").match(/\.breadcrumb li \+ li::before \{([^}]*)\}/)[1];
+
+  assert.match(rule, /content: "›";\s*content: "›" \/ "";/);
 });
 
 // Contact data lives only in src/_data/site.js: a copy in a template would go stale when it changes.
@@ -91,7 +104,7 @@ test("templates read contact data from site.js instead of repeating it", () => {
   for (const file of sources("src")) {
     assert.doesNotMatch(
       readSource(file),
-      /Génesis 39|226 3566|226-3566|9519 ?0145|8:00 a 12:00 y 14:00|contacto@resortesfiebig/,
+      /Génesis 39|G%C3%A9nesis|226 3566|226-3566|56652263566|9519 ?0145|56995190145|8:00 a 12:00 y 14:00|contacto@resortesfiebig/,
       file,
     );
   }

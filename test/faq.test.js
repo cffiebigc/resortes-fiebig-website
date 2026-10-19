@@ -41,3 +41,12 @@ test("the FAQ keeps the approved answers", () => {
   assert.ok(text.includes("durante el día"));
   assert.ok(text.includes("Por transferencia o con tarjeta."));
 });
+
+test("the FAQ breadcrumb leads home and marks the current page", () => {
+  const nav = read(PAGE).match(/<nav class="breadcrumb"[^>]*>([\s\S]*?)<\/nav>/)[1];
+  const items = [...nav.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, item]) => item);
+
+  assert.equal(items.length, 2);
+  assert.match(items[0], /<a href="\/">Inicio<\/a>/);
+  assert.match(items[1], /<span aria-current="page">Preguntas frecuentes<\/span>/);
+});

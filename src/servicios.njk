@@ -16,7 +16,11 @@ eleventyComputed:
 <section class="hero hero--page">
   <div class="container">
     <nav class="breadcrumb" aria-label="Ruta de navegación">
-      <a href="/">Inicio</a> <span aria-hidden="true">›</span> <a href="/#servicios">Servicios</a>
+      <ol>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/#servicios">Servicios</a></li>
+        <li><span aria-current="page">{{ service.card }}</span></li>
+      </ol>
     </nav>
     <div class="hero__copy">
       <h1 class="hero__title hero__title--page">{{ service.h1 }}</h1>
@@ -54,7 +58,11 @@ eleventyComputed:
     {%- if block.items %}
     <ul>
       {%- for item in block.items %}
-      <li>{% if item.term %}<b>{{ item.term }}:</b> {{ item.text }}{% else %}{{ item }}{% endif %}</li>
+      <li>
+        {%- if item.term %}<b>{{ item.term }}:</b> {{ item.text }}
+        {%- elif item.see %}{{ item.text }} (ver <a href="/servicios/{{ (services | findBy("slug", item.see.slug)).slug }}/">{{ item.see.label }}</a>).
+        {%- else %}{{ item }}
+        {%- endif %}</li>
       {%- endfor %}
     </ul>
     {%- endif %}

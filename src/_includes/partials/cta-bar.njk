@@ -4,7 +4,7 @@
   >
   <a
     class="btn btn--outline"
-    href="{{ site.whatsapp }}"
+    href="{{ (site.whatsappBase ~ (service.whatsapp | urlencode)) if service else site.whatsapp }}"
     data-track="whatsapp"
     data-track-location="barra-movil"
     target="_blank"

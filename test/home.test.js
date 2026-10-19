@@ -18,7 +18,8 @@ test("every home service card links to its published page", () => {
 });
 
 test("every page links to the FAQ from the menu", () => {
-  for (const page of htmlPages()) assert.match(read(page), /<a href="\/preguntas-frecuentes\/">Preguntas<\/a>/, page);
+  for (const page of htmlPages())
+    assert.match(read(page), /<a href="\/preguntas-frecuentes\/"[^>]*>Preguntas<\/a>/, page);
 });
 
 test("the home tells the turnaround and why it matters", () => {

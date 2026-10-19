@@ -55,3 +55,7 @@ test("coil springs are only mentioned to rule them out", () => {
     });
   });
 });
+
+test("rearqueo is spelled as one word everywhere", () => {
+  for (const file of [...htmlPages(), "llms.txt"]) assert.doesNotMatch(read(file), /re-arqueo/i, file);
+});

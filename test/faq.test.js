@@ -32,7 +32,8 @@ test("the FAQPage structured data says exactly what the page shows", () => {
 test("the FAQ keeps the approved answers", () => {
   const text = visibleText(read(PAGE));
 
-  assert.ok(questions().length >= 12 && questions().length <= 15);
+  // 15 approved questions; adding one means getting its text approved first.
+  assert.equal(questions().length, 15);
   assert.ok(
     text.includes(
       "Tráelo al taller y evaluamos la falla. Si es de material, y no por sobrecarga o mal uso, respondemos por el repuesto. Si la causa no está clara, lo conversamos.",

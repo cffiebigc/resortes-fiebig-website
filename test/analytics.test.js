@@ -130,10 +130,12 @@ test("clicks outside tracked links and unknown types send nothing", () => {
   assert.deepEqual(events(), []);
 });
 
-test("tracking never blocks the call or WhatsApp navigation", () => {
+test("tracking never blocks the navigation of any contact link", () => {
   const { click } = load(PRODUCTION_HOST);
 
-  assert.equal(click(insideLink({ track: "call", trackLocation: "nav" })).defaultPrevented, false);
+  for (const [track] of EVENTS) {
+    assert.equal(click(insideLink({ track, trackLocation: "nav" })).defaultPrevented, false, track);
+  }
 });
 
 test("every page loads the analytics script deferred from the root", () => {

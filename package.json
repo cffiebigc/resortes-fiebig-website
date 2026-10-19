@@ -6,7 +6,7 @@
     "build:spring": "node scripts/build-spring.js --write",
     "build:logo": "node scripts/build-logo.js",
     "format": "prettier --print-width 120 --write src/css/*.css src/js/*.js src/_data/*.js scripts/*.js lib/*.js test/*.js eleventy.config.cjs",
-    "test": "eleventy --quiet && node --test test/*.test.js",
+    "test": "rm -rf _site && eleventy --quiet && node --test test/*.test.js",
     "build": "eleventy",
     "start": "eleventy --serve --port 8765",
     "fonts": "node scripts/fetch-fonts.js"

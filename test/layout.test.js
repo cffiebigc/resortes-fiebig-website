@@ -11,10 +11,17 @@ function navHrefs(html) {
 // Pages can live at any depth (and the 404 is served at any missing path), so relative paths break.
 test("every page only uses root-absolute local paths", () => {
   for (const page of htmlPages()) {
-    const localRefs = [...read(page).matchAll(/(?:href|src)="([^"#][^"]*)"/g)]
-      .map((match) => match[1])
-      .filter((url) => !/^(https?:|tel:|mailto:)/.test(url));
+    const html = read(page);
+    const refs = [
+      ...[...html.matchAll(/(?:href|src)="([^"#][^"]*)"/g)].map((match) => match[1]),
+      ...[...html.matchAll(/srcset="([^"]+)"/g)].flatMap((match) =>
+        match[1].split(",").map((part) => part.trim().split(" ")[0]),
+      ),
+      ...[...html.matchAll(/url\(["']?([^"')]+)["']?\)/g)].map((match) => match[1]),
+    ];
+    const localRefs = refs.filter((url) => !/^(https?:|tel:|mailto:|data:)/.test(url));
 
+    assert.ok(localRefs.length > 0, page);
     for (const url of localRefs) assert.match(url, /^\//, `${page}: ${url}`);
   }
 });

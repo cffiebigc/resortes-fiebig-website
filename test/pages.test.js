@@ -5,6 +5,8 @@ const { SITE_URL, read } = require("./helpers");
 test("the 404 page is noindex and offers call, whatsapp and home", () => {
   const html = read("404.html");
 
+  assert.match(html, /<html lang="es/);
+  assert.match(html, /<title>Página no encontrada \| Resortes Fiebig<\/title>/);
   assert.match(html, /<meta name="robots" content="noindex" \/>/);
   assert.match(html, /href="tel:\+56652263566"/);
   assert.match(html, /href="https:\/\/wa\.me\/56995190145/);

@@ -81,6 +81,7 @@ skipTo: servicios
       <article class="service">
         <h3><a href="/servicios/{{ item.slug }}/">{{ item.card }}</a></h3>
         <p>{{ item.cardText }}</p>
+        <p class="service__more"><a href="/servicios/{{ item.slug }}/">Ver servicio<span class="visually-hidden">: {{ item.card }}</span> <span aria-hidden="true">→</span></a></p>
       </article>
       {%- endfor %}
     </div>

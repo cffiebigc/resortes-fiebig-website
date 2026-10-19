@@ -43,3 +43,16 @@ test("llms.txt lists every service page and the FAQ", () => {
   for (const service of services) assert.ok(text.includes(`${SITE_URL}servicios/${service.slug}/`), service.slug);
   assert.ok(text.includes(`${SITE_URL}preguntas-frecuentes/`));
 });
+
+// On touch screens there is no hover, so each card needs a link that looks like one.
+test("every home service card shows a visible link to its page", () => {
+  const cards = read("index.html").split('<article class="service">').slice(1);
+
+  assert.equal(cards.length, services.length);
+  cards.forEach((card, index) => {
+    assert.match(
+      card,
+      new RegExp(`<p class="service__more"><a href="/servicios/${services[index].slug}/">Ver servicio`),
+    );
+  });
+});

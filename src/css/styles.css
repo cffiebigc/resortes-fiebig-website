@@ -733,6 +733,21 @@ h3 {
   color: var(--royal);
 }
 
+.service .service__more {
+  margin-top: 0.75rem;
+}
+
+.service__more a {
+  color: var(--royal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.service__more a:hover,
+.service__more a:focus-visible {
+  text-decoration: underline;
+}
+
 .service p {
   margin-top: 0.5rem;
   color: var(--steel-500);

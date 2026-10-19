@@ -27,26 +27,50 @@ function payload(key, urlList) {
   };
 }
 
-async function main() {
+// Every request gives up after this long, so a hung server cannot stall the deploy run.
+const TIMEOUT_MS = 15000;
+
+// The sitemap failing means the published site is broken (throws: the run goes red);
+// IndexNow failing is a third-party hiccup (warns: the run stays green).
+async function notify({ fetch = globalThis.fetch, log = console } = {}) {
   const key = findKey(path.join(__dirname, "..", "src"));
   // The query skips the CDN copy of the previous deploy.
-  const xml = await (await fetch(`https://${HOST}/sitemap.xml?v=${Date.now()}`)).text();
-  const urls = urlsFromSitemap(xml);
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(payload(key, urls)),
+  const sitemap = await fetch(`https://${HOST}/sitemap.xml?v=${Date.now()}`, {
+    signal: AbortSignal.timeout(TIMEOUT_MS),
   });
 
-  console.log(`IndexNow answered ${response.status} for ${urls.length} URLs`);
-  if (!response.ok) process.exit(1);
+  if (!sitemap.ok) throw new Error(`the sitemap answered ${sitemap.status}`);
+
+  const urls = urlsFromSitemap(await sitemap.text()).filter((url) => url.startsWith(`https://${HOST}/`));
+
+  if (urls.length === 0) throw new Error("the sitemap has no URLs of the site");
+
+  let response;
+
+  try {
+    response = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(payload(key, urls)),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+  } catch (error) {
+    log.warn(`::warning::IndexNow did not answer: ${error.message}`);
+
+    return null;
+  }
+
+  if (response.ok) log.log(`IndexNow answered ${response.status} for ${urls.length} URLs`);
+  else log.warn(`::warning::IndexNow answered ${response.status} for ${urls.length} URLs`);
+
+  return response.status;
 }
 
 if (require.main === module) {
-  main().catch((error) => {
+  notify().catch((error) => {
     console.error(error.message);
     process.exit(1);
   });
 }
 
-module.exports = { findKey, urlsFromSitemap, payload };
+module.exports = { findKey, urlsFromSitemap, payload, notify };

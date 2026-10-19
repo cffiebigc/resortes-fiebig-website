@@ -1,6 +1,6 @@
 // Service pages. Copy approved by the workshop; order matches the home cards.
 const QUOTE_AND_TURNAROUND =
-  "Revisamos el paquete y te damos un presupuesto estimado. El valor final puede variar según lo que aparezca al desarmar; si cambia, te avisamos de inmediato. Una camioneta o un camión normal suele quedar listo durante el día, según la carga del taller y el material disponible.";
+  "Revisamos el paquete y te damos un presupuesto estimado. El valor final puede variar según lo que aparezca al desarmar; si cambia, te avisamos de inmediato. Una camioneta o un camión normal suele quedar listo durante el día, según la carga del taller y el material disponible. Los vehículos más grandes o los trabajos complicados toman más.";
 
 module.exports = [
   {
@@ -21,7 +21,7 @@ module.exports = [
           "El paquete original ya no viene de fábrica o el repuesto no llega.",
           "El paquete está muy vencido, con varias hojas quebradas.",
           "Un remolque o carro hecho a pedido que no tiene paquete de catálogo.",
-          "Necesitas más capacidad de carga (ver refuerzos).",
+          { text: "Necesitas más capacidad de carga", see: { slug: "refuerzo-de-resortes", label: "refuerzos" } },
         ],
       },
       {
@@ -48,7 +48,7 @@ module.exports = [
     faqs: [
       {
         q: "¿Fabrican paquetes que ya no vienen de fábrica?",
-        a: "Sí. Los hacemos a medida o según muestra, para cualquier marca y modelo.",
+        a: "Sí, a medida o según muestra, para cualquier marca y modelo.",
       },
       {
         q: "¿Pueden hacer un paquete con más capacidad de carga?",
@@ -116,7 +116,7 @@ module.exports = [
   },
   {
     slug: "rearqueo-de-resortes",
-    card: "Re-arqueo de paquetes vencidos",
+    card: "Rearqueo de paquetes vencidos",
     cardText: "Le devolvemos la curvatura original a un paquete aplastado, sin cambiar todas las hojas.",
     title: "Rearqueo de paquetes de resortes en Puerto Montt",
     h1: "Rearqueo de paquetes de resortes en Puerto Montt",
@@ -197,7 +197,7 @@ module.exports = [
       },
       {
         heading: "Cotización y plazo",
-        text: "Te damos un presupuesto estimado; si al desarmar aparece algo más, te avisamos de inmediato. Una camioneta o un camión normal suele quedar listo durante el día, según la carga del taller y el material disponible.",
+        text: "Te damos un presupuesto estimado; si al desarmar aparece algo más, te avisamos de inmediato. Una camioneta o un camión normal suele quedar listo durante el día, según la carga del taller y el material disponible. Los vehículos más grandes o los trabajos complicados toman más.",
       },
     ],
     faqs: [

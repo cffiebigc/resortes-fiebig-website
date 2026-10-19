@@ -2,14 +2,14 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { SITE_DIR, read } = require("./helpers");
+const { SITE_DIR, read, htmlPages } = require("./helpers");
 
 function fontFaces(html) {
   return [...html.matchAll(/@font-face\s*\{([^}]*)\}/g)].map((match) => match[1]);
 }
 
-test("no page loads third-party fonts", () => {
-  for (const page of ["index.html", "404.html"]) {
+test("no page or stylesheet loads third-party fonts", () => {
+  for (const page of [...htmlPages(), "css/styles.css"]) {
     assert.doesNotMatch(read(page), /fonts\.(googleapis|gstatic)\.com/, page);
   }
 });

@@ -7,7 +7,9 @@ const { findKey, urlsFromSitemap, payload } = require("../scripts/indexnow");
 test("the workflow tests before publishing and keeps the git history for sitemap dates", () => {
   const workflow = readSource(".github/workflows/deploy.yml");
 
-  assert.match(workflow, /fetch-depth: 0/);
+  const buildJob = workflow.slice(workflow.indexOf("\n  build:"), workflow.indexOf("\n  deploy:"));
+
+  assert.match(buildJob, /fetch-depth: 0/);
   assert.match(workflow, /path: _site/);
   assert.ok(workflow.indexOf("npm test") < workflow.indexOf("upload-pages-artifact"));
 });
@@ -54,4 +56,9 @@ test("only the deploy job can write to Pages", () => {
   assert.doesNotMatch(globalPart, /pages: write|id-token: write/);
   assert.match(deployJob, /pages: write/);
   assert.match(deployJob, /id-token: write/);
+});
+
+// Without the cleanup a page deleted from src would still pass from an old build.
+test("npm test builds from a clean output folder", () => {
+  assert.match(JSON.parse(readSource("package.json")).scripts.test, /^rm -rf _site && eleventy /);
 });

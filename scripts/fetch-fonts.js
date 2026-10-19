@@ -26,6 +26,15 @@ async function download(url) {
   return response;
 }
 
+// Deletes the woff2 files in dir that are not in keep; licenses and other files stay.
+function removeOrphans(dir, keep) {
+  const orphans = fs.readdirSync(dir).filter((name) => name.endsWith(".woff2") && !keep.includes(name));
+
+  for (const name of orphans) fs.rmSync(path.join(dir, name));
+
+  return orphans;
+}
+
 async function main() {
   const css = await (await download(CSS_URL)).text();
   const faces = [...css.matchAll(/\/\* latin \*\/\s*@font-face\s*\{([^}]*)\}/g)].map(([, body]) => ({
@@ -65,10 +74,22 @@ async function main() {
 
   fs.writeFileSync(path.join(ROOT, "src", "_includes", "partials", "fonts.css"), `${rules.join("\n")}\n`);
   fs.writeFileSync(path.join(ROOT, "src", "_data", "fonts.json"), `${JSON.stringify({ preload }, null, 2)}\n`);
+
+  // Only now that nothing points at them can the old files go.
+  const removed = removeOrphans(
+    dir,
+    faces.map((face) => path.basename(face.file)),
+  );
+
+  if (removed.length) console.error(`removed ${removed.join(", ")}`);
   console.error(`${faces.length} faces, preload: ${preload.join(", ")}`);
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = { removeOrphans };

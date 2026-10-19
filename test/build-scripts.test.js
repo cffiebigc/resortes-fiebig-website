@@ -30,3 +30,26 @@ test("build-logo writes its assets and the mark partial under src", () => {
   assert.match(source, /logo-mark\.njk/);
   assert.doesNotMatch(source, /"index\.html"/);
 });
+
+const fs = require("node:fs");
+const os = require("node:os");
+const { removeOrphans } = require("../scripts/fetch-fonts");
+
+// When Google ships new font versions the old files would otherwise stay published forever.
+test("fetch-fonts removes woff2 files the new @font-face no longer uses", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "fonts-"));
+
+  for (const name of ["keep.woff2", "old.woff2", "OFL-archivo.txt"]) fs.writeFileSync(path.join(dir, name), "");
+
+  assert.deepEqual(removeOrphans(dir, ["keep.woff2"]), ["old.woff2"]);
+  assert.deepEqual(fs.readdirSync(dir).sort(), ["OFL-archivo.txt", "keep.woff2"]);
+});
+
+// A run that fails halfway must not leave fonts.css pointing at files it already deleted.
+test("fetch-fonts deletes old files only after writing the new @font-face", () => {
+  const source = readSource("scripts/fetch-fonts.js");
+  const main = source.slice(source.indexOf("async function main"));
+
+  assert.ok(main.indexOf("removeOrphans(") > main.indexOf('"fonts.css"'));
+  assert.ok(main.indexOf("removeOrphans(") > main.indexOf('"fonts.json"'));
+});

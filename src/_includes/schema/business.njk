@@ -11,8 +11,8 @@
         "url": "https://www.resortesfiebig.cl/",
         "logo": "https://www.resortesfiebig.cl/assets/apple-touch-icon.png",
         "image": "https://www.resortesfiebig.cl/assets/og.png",
-        "telephone": {{ site.phone.e164 | dump | safe }},
-        "email": {{ site.email | dump | safe }},
+        "telephone": {{ site.phone.e164 | jsonLd | safe }},
+        "email": {{ site.email | jsonLd | safe }},
         "foundingDate": "1994",
         "sameAs": ["https://www.facebook.com/resortes.fiebig"],
         "openingHoursSpecification": [
@@ -29,12 +29,12 @@
             "closes": "18:00"
           }
         ],
-        "hasMap": {{ site.maps.search | dump | safe }},
+        "hasMap": {{ site.maps.search | jsonLd | safe }},
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": {{ site.address.street | dump | safe }},
-          "addressLocality": {{ site.address.city | dump | safe }},
-          "addressRegion": {{ site.address.region | dump | safe }},
+          "streetAddress": {{ site.address.street | jsonLd | safe }},
+          "addressLocality": {{ site.address.city | jsonLd | safe }},
+          "addressRegion": {{ site.address.region | jsonLd | safe }},
           "postalCode": "5500617",
           "addressCountry": "CL"
         },
@@ -51,7 +51,7 @@
           "Fabricación de paquetes de resortes",
           "Reparación de paquetes de resortes",
           "Hojas de resorte a medida",
-          "Re-arqueo de resortes",
+          "Rearqueo de resortes",
           "Suspensión de camiones"
         ],
         "hasOfferCatalog": {
@@ -63,8 +63,8 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": {{ item.card | dump | safe }},
-                "url": {{ (site.url + "servicios/" + item.slug + "/") | dump | safe }}
+                "name": {{ item.card | jsonLd | safe }},
+                "url": {{ (site.url + "servicios/" + item.slug + "/") | jsonLd | safe }}
               }
             }{{ "," if not loop.last }}
             {%- endfor %}

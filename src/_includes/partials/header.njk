@@ -19,7 +19,7 @@
         <li><a href="{{ anchor }}#vehiculos">Vehículos</a></li>
         <li><a href="{{ anchor }}#taller">El taller</a></li>
         <li><a href="{{ anchor }}#contacto">Contacto</a></li>
-        <li><a href="/preguntas-frecuentes/">Preguntas</a></li>
+        <li><a href="/preguntas-frecuentes/"{% if page.url == "/preguntas-frecuentes/" %} aria-current="page"{% endif %}>Preguntas</a></li>
       </ul>
       <a class="site-nav__phone" href="{{ site.phone.href }}" data-track="call" data-track-location="nav"
         ><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>{{ site.phone.display }}</a

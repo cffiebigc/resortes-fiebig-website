@@ -23,5 +23,6 @@ module.exports = {
     search: `https://www.google.com/maps/search/?api=1&query=${ADDRESS_QUERY}`,
     embed: `https://www.google.com/maps?q=${ADDRESS_QUERY}&z=15&output=embed`,
   },
+  // Also repeated by hand in the approved FAQ answer (src/_data/faq.js) and openingHoursSpecification (schema/business.njk).
   hours: "Lunes a viernes, 8:00 a 12:00 y 14:00 a 18:00",
 };

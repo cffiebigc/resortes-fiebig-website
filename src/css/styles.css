@@ -351,7 +351,8 @@ h3 {
 }
 
 .site-nav__list a:hover,
-.site-nav__list a.is-active {
+.site-nav__list a.is-active,
+.site-nav__list a[aria-current="page"] {
   color: var(--white);
 }
 
@@ -400,7 +401,8 @@ h3 {
     border-bottom: 2px solid transparent;
   }
 
-  .site-nav__list a.is-active {
+  .site-nav__list a.is-active,
+  .site-nav__list a[aria-current="page"] {
     border-bottom-color: var(--royal);
   }
 
@@ -986,28 +988,28 @@ h3 {
   }
 }
 
-body {
-  padding-bottom: 4.5rem;
-}
-
 /* Same breakpoint as the inline menu: below it the phone lives inside the collapsed menu. */
 @media (min-width: 70rem) {
   .cta-bar {
     display: none;
   }
-
-  body {
-    padding-bottom: 0;
-  }
 }
 
 /* Footer ------------------------------------------------------------------ */
 
+/* The bottom padding leaves room for the fixed mobile call bar (reset where the bar hides). */
 .site-footer {
   background: var(--steel-900);
   color: var(--steel-300);
   padding-block: 2.5rem;
+  padding-bottom: calc(2.5rem + 4.5rem + env(safe-area-inset-bottom));
   font-size: 0.9rem;
+}
+
+@media (min-width: 70rem) {
+  .site-footer {
+    padding-bottom: 2.5rem;
+  }
 }
 
 .site-footer__brand {
@@ -1064,8 +1066,27 @@ body {
   color: var(--steel-300);
 }
 
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li + li::before {
+  content: "›";
+  content: "›" / "";
+  margin-right: 0.4rem;
+}
+
 .breadcrumb a {
   color: inherit;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--steel-100);
 }
 
 .prose {

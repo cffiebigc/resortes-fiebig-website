@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
 
 - Fabricación de paquetes completos, a medida o según muestra, para cualquier marca y modelo.
 - Reparación de paquetes: cambio de hojas quebradas, hoja madre, perno centro y abrazaderas.
-- Re-arqueo de paquetes vencidos.
+- Rearqueo de paquetes vencidos.
 - Refuerzos para más carga.
 - Hojas de resorte a medida.
 - Cambio de bujes, pernos centro, abrazaderas y abrazaderas de eje (pernos U).
@@ -26,11 +26,11 @@ Camionetas y camiones normales quedan listos durante el día, según la carga de
 ## Contacto
 
 - Sitio: https://www.resortesfiebig.cl/
-- Dirección: Génesis 39, Parque Industrial Recondo, Puerto Montt, Región de Los Lagos
-- Horario: Lunes a viernes, 8:00 a 12:00 y 14:00 a 18:00
-- Teléfono: +56 65 226 3566
-- WhatsApp: https://wa.me/56995190145
-- Correo: contacto@resortesfiebig.cl
+- Dirección: {{ site.address.street }}, {{ site.address.city }}, {{ site.address.region }}
+- Horario: {{ site.hours }}
+- Teléfono: {{ site.phone.international }}
+- WhatsApp: {{ site.whatsappBase | replace("?text=", "") }}
+- Correo: {{ site.email }}
 
 Atiende clientes de Puerto Montt, Puerto Varas, Llanquihue, Calbuco, Chiloé, Osorno y toda la Región de Los Lagos. El único taller está en Puerto Montt.
 

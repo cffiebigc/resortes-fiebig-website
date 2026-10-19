@@ -1,4 +1,7 @@
 ---
+dataSources:
+  - src/_data/services.js
+  - src/_data/site.js
 layout: layouts/base.njk
 title: Paquetes de resortes en Puerto Montt | Resortes Fiebig
 description: Taller familiar desde 1994. Fabricamos y reparamos paquetes de resortes para camiones, camionetas, buses y remolques en Puerto Montt, Región de Los Lagos.
@@ -42,7 +45,7 @@ skipTo: servicios
             llegar</a
           >
         </div>
-        <p class="hero__where">Génesis 39, Parque Industrial Recondo, Puerto Montt.</p>
+        <p class="hero__where">{{ site.address.street }}, {{ site.address.city }}.</p>
       </div>
     </div>
   </div>
@@ -199,15 +202,14 @@ skipTo: servicios
               data-track-location="contacto"
               target="_blank"
               rel="noopener"
-              >Génesis 39, Parque Industrial Recondo<br />Puerto Montt, Región de Los Lagos</a
+              >{{ site.address.street }}<br />{{ site.address.city }}, {{ site.address.region }}</a
             >
           </dd>
         </div>
         <div>
           <dt>Horario</dt>
           <dd>
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock" /></svg>Lunes a
-            viernes, 8:00 a 12:00 y 14:00 a 18:00
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock" /></svg>{{ site.hours }}
           </dd>
         </div>
         <div>
@@ -258,7 +260,7 @@ skipTo: servicios
     </div>
     <div class="contact__map">
       <iframe
-        title="Mapa: Resortes Fiebig, Génesis 39, Parque Industrial Recondo, Puerto Montt"
+        title="Mapa: {{ site.name }}, {{ site.address.street }}, {{ site.address.city }}"
         src="{{ site.maps.embed }}"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"

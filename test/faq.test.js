@@ -32,7 +32,8 @@ test("the FAQPage structured data says exactly what the page shows", () => {
 test("the FAQ keeps the approved answers", () => {
   const text = visibleText(read(PAGE));
 
-  assert.ok(questions().length >= 12 && questions().length <= 15);
+  // 15 approved questions; adding one means getting its text approved first.
+  assert.equal(questions().length, 15);
   assert.ok(
     text.includes(
       "Tráelo al taller y evaluamos la falla. Si es de material, y no por sobrecarga o mal uso, respondemos por el repuesto. Si la causa no está clara, lo conversamos.",
@@ -40,4 +41,13 @@ test("the FAQ keeps the approved answers", () => {
   );
   assert.ok(text.includes("durante el día"));
   assert.ok(text.includes("Por transferencia o con tarjeta."));
+});
+
+test("the FAQ breadcrumb leads home and marks the current page", () => {
+  const nav = read(PAGE).match(/<nav class="breadcrumb"[^>]*>([\s\S]*?)<\/nav>/)[1];
+  const items = [...nav.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, item]) => item);
+
+  assert.equal(items.length, 2);
+  assert.match(items[0], /<a href="\/">Inicio<\/a>/);
+  assert.match(items[1], /<span aria-current="page">Preguntas frecuentes<\/span>/);
 });

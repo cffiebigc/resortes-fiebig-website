@@ -74,3 +74,25 @@ test("the room for the mobile call bar belongs to the footer", () => {
   );
   assert.match(desktop, /\.site-footer \{\s*padding-bottom: 2\.5rem;\s*\}/);
 });
+
+// Contact data lives only in src/_data/site.js: a copy in a template would go stale when it changes.
+test("templates read contact data from site.js instead of repeating it", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const sources = (dir) =>
+    fs.readdirSync(path.join(__dirname, "..", dir), { withFileTypes: true }).flatMap((entry) => {
+      const file = path.join(dir, entry.name);
+
+      if (entry.isDirectory()) return sources(file);
+
+      return /\.(njk|js|txt)$/.test(entry.name) && file !== path.join("src", "_data", "site.js") ? [file] : [];
+    });
+
+  for (const file of sources("src")) {
+    assert.doesNotMatch(
+      readSource(file),
+      /Génesis 39|226 3566|226-3566|9519 ?0145|8:00 a 12:00 y 14:00|contacto@resortesfiebig/,
+      file,
+    );
+  }
+});

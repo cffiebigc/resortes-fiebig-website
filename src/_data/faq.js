@@ -1,4 +1,6 @@
 // FAQ page. Copy approved by the workshop; the FAQPage structured data is built from this same data.
+const site = require("./site");
+
 module.exports = [
   {
     group: "Cotización, plazos y pago",
@@ -60,7 +62,7 @@ module.exports = [
       },
       {
         q: "¿Dónde están?",
-        a: "En Génesis 39, Parque Industrial Recondo, Puerto Montt. Es nuestro único taller.",
+        a: `En ${site.address.street}, ${site.address.city}. Es nuestro único taller.`,
       },
       {
         q: "¿Cuál es el horario?",

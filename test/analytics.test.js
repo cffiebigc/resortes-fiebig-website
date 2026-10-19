@@ -108,7 +108,7 @@ for (const [track, eventName] of EVENTS) {
 
     click(insideLink({ track, trackLocation: "hero" }));
 
-    assert.deepEqual(events(), [["event", eventName, { link_location: "hero", transport_type: "beacon" }]]);
+    assert.deepEqual(events(), [["event", eventName, { link_location: "hero" }]]);
   });
 }
 

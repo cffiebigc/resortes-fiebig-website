@@ -1,5 +1,5 @@
 // Parametric leaf-spring pack. Shared by the browser (hero animation) and by
-// scripts/build-spring.js (static markup baked into index.html).
+// scripts/build-spring.js (static markup in the hero and diagram partials).
 //
 // Drawn as mounted on a truck and as in the original Fiebig logo: eyes up at
 // the ends, the main leaf on top hanging down to the centre, and the shorter
@@ -63,8 +63,7 @@
   function clipRect(x, sag) {
     const covered = leavesCovering(x);
     const top = leafY(covered[0], sag, x) - THICKNESS / 2 - 4;
-    const bottom =
-      leafY(covered[covered.length - 1], sag, x) + THICKNESS / 2 + 4;
+    const bottom = leafY(covered[covered.length - 1], sag, x) + THICKNESS / 2 + 4;
 
     return { x: x - 9, y: top, width: 18, height: bottom - top };
   }

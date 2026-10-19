@@ -7,20 +7,26 @@ Sitio de **Resortes Fiebig Ltda.**, taller de fabricación y reparación de paqu
 ```
 src/                       Fuentes del sitio (lo único que Eleventy lee)
   index.njk                Portada (hero, servicios, proceso, vehículos, taller, contacto)
+  servicios.njk            Una página por servicio (paginación sobre _data/services.js)
+  preguntas-frecuentes.njk Preguntas frecuentes (desde _data/faq.js)
   404.njk                  Página de error (noindex; Pages la sirve en cualquier ruta, por eso todo es absoluto)
-  sitemap.njk              Sitemap generado, con la fecha del último commit de cada página
+  sitemap.njk              Sitemap; cada fecha es el commit más nuevo de la plantilla y de sus dataSources
+  llms.njk                 llms.txt para buscadores con IA
   _data/site.js            Fuente única de teléfono, WhatsApp, correo, dirección y links de Maps
+  _data/services.js        Textos de las páginas de servicio y de las tarjetas de la portada
+  _data/faq.js             Preguntas frecuentes aprobadas por el taller
   _data/fonts.json         Fuentes a precargar (lo escribe scripts/fetch-fonts.js)
   _includes/layouts/       base.njk: head, header, footer, barra del celular y scripts
   _includes/partials/      Sprite de íconos, header, footer, barra del celular, marca, resorte y fuentes
-  _includes/schema/        JSON-LD del taller
+  _includes/schema/        JSON-LD del taller, de cada servicio y de las preguntas
   css/styles.css           Tokens de diseño, base, layout y componentes
   js/spring.js             Geometría paramétrica del paquete de resortes (compartida)
   js/main.js               Navegación, sección activa, barra móvil y animación del hero
   js/analytics.js          GA4 solo en producción y eventos de los botones de contacto (data-track)
   assets/                  Logos, íconos, imagen OG y fuentes propias (con sus licencias OFL)
-  robots.txt, llms.txt     Se copian tal cual
+  robots.txt               Se copia tal cual
   <clave>.txt              Clave de IndexNow
+lib/                       Filtros de Eleventy: JSON-LD, findBy y fechas del sitemap
 scripts/                   build-spring, build-logo, fetch-fonts e indexnow
 test/                      Tests con node:test sobre lo que se publica (_site/)
 .github/workflows/         deploy.yml
@@ -51,7 +57,7 @@ La fuente de Pages tiene que ser «GitHub Actions» (Settings → Pages); si no 
 ## Diseño
 
 - **Color:** acero (`#1e2a35`, `#55636f`, `#b9c3cc`, `#eef1f3`) y un solo acento azul rey (`#4169e1`) para llamadas a la acción y la hoja madre.
-- **Tipografía:** Big Shoulders Display (titulares, marca) y Archivo (texto). Ambas desde Google Fonts.
+- **Tipografía:** Big Shoulders Display (titulares, marca) y Archivo (texto), servidas desde el propio sitio (`npm run fonts` las baja de Google Fonts).
 - **Pieza central:** el paquete de resortes dibujado en SVG a partir de una parábola. En el hero, al cargar, las hojas entran casi rectas y terminan de curvarse en un solo movimiento; al hacer clic, flexiona bajo carga (respeta `prefers-reduced-motion`). En servicios, el mismo dibujo sirve de diagrama de partes.
 
 ## Marca
@@ -62,14 +68,6 @@ El logo original de Fiebig (en azul y amarillo) apila tres cosas: media rueda de
 - `assets/logo-mark.svg`: solo la marca.
 - Colores y proporciones en `scripts/build-logo.js` (`COLORS`, `GEAR`, `SPRING`, `anvilPath`). Para volver al azul y amarillo históricos, basta cambiar `COLORS` y correr `npm run build:logo`.
 
-## Datos del negocio usados
+## Datos del negocio
 
-| Dato        | Valor                                                  | Fuente                         |
-| ----------- | ------------------------------------------------------ | ------------------------------ |
-| Razón social| Resortes Fiebig Limitada, RUT 78.486.010-8             | Mercantil, RedConecta          |
-| Dirección   | Génesis 39, Parque Industrial Recondo, Puerto Montt    | Mercantil, RedConecta, Yelp    |
-| Teléfono    | +56 65 226 3566                                        | RedConecta, Cylex              |
-| WhatsApp    | +56 9 9519 0145 (celular, WhatsApp Business)           | Confirmado por el taller       |
-| Correo      | contacto@resortesfiebig.cl                             | Confirmado por el taller       |
-| Fundación   | 1994                                                   | EMIS                           |
-| Horario     | Lunes a viernes, 8:00–12:00 y 14:00–18:00              | Confirmado por el taller       |
+Teléfono, WhatsApp, correo, dirección, horario y links de Maps viven solo en `src/_data/site.js`; las páginas, el JSON-LD y llms.txt los leen de ahí.

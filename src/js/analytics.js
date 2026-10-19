@@ -37,7 +37,6 @@
 
     window.gtag("event", EVENT_NAMES[track], {
       link_location: link.dataset.trackLocation || "desconocida",
-      transport_type: "beacon",
     });
   });
 })();
